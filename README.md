@@ -1,4 +1,4 @@
-<img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/88d1d94b-ddf4-4992-938a-503cb18b84b2" /><h1 align="center">🛒 BerkayShop - Modern Mikroservis E-Ticaret Platformu</h1>
+<h1 align="center">🛒 BerkayShop - Modern Mikroservis E-Ticaret Platformu</h1>
 
 <p align="center">
   ASP.NET Core, Ocelot API Gateway, IdentityServer4, RabbitMQ ve gRPC teknolojileriyle geliştirilmiş,<br/>
