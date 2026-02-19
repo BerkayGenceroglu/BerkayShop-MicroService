@@ -57,10 +57,8 @@ Bu proje sayesinde:
 
 ## 🧱 Proje Mimarisi
 
-```
 <img width="827" height="907" alt="image" src="https://github.com/user-attachments/assets/c46c58ac-ccbf-4fd2-9aca-cf6cb07c9e57" />
 
-```
 
 ---
 
