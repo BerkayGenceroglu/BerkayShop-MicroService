@@ -94,6 +94,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ---
 
+
 ## 🖥️ Servis Detayları ve Sayfalar
 
 ---
@@ -719,28 +720,7 @@ dotnet run
 
 ---
 
-## 🔢 Port Numaraları
 
-> Kesin port numaraları için `PortNumbers.txt` dosyasına başvurun.
-
-| Servis | Port |
-|--------|------|
-| Frontend (Web) | 5000 |
-| Identity Server | 5001 |
-| API Gateway | 5010 |
-| Catalog Service | 5011 |
-| Basket Service | 5013 |
-| Discount Service (REST) | 5014 |
-| Discount Service (gRPC) | 5015 |
-| Order Service | 5016 |
-| MongoDB | 27017 |
-| Redis | 6379 |
-| PostgreSQL | 5432 |
-| SQL Server | 1433 |
-| RabbitMQ | 5672 |
-| RabbitMQ Yönetim | 15672 |
-
----
 
 ## 📚 Kaynaklar
 
