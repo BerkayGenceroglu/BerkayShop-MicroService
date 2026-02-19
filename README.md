@@ -216,7 +216,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ### 6. Sepet Sayfası (Basket)
 
-**URL:** `http://localhost:5000/Basket`
+**URL:** `ShoppingCart/BasketPage`
 
 **Açıklama:** Kullanıcının sepetini görüntülediği ve yönettiği sayfadır. Redis üzerinde her kullanıcıya özel saklanan sepet verisi gösterilir.
 
@@ -251,7 +251,7 @@ Toplam fiyat güncellenir
 
 ### 7. Checkout / Sipariş Tamamlama
 
-**URL:** `http://localhost:5000/Basket/Checkout`
+**URL:** `Order/Index?LastPriceAfterDiscount=`
 
 **Açıklama:** Siparişin tamamlandığı son adım. Form doldurulduktan sonra `BasketCheckoutEvent` RabbitMQ'ya yayınlanır ve Order Service siparişi oluşturur.
 
@@ -276,6 +276,7 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 <img width="1920" height="946" alt="image" src="https://github.com/user-attachments/assets/162bc2de-a960-4e70-8345-69869c7926c8" />
 
 
+**URL:** `Payment/PaymentPage`
 
 <!-- Ekran görüntüsü: Checkout Ödeme Bilgileri -->
 <img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/f912c261-fcdd-47b3-930b-f9ed5f3acf65" />
@@ -286,7 +287,7 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 
 ### 8. Sipariş Geçmişi
 
-**URL:** `http://localhost:5000/Order`
+**URL:** `User/MyOrder/Index`
 
 **Açıklama:** Giriş yapmış kullanıcının geçmiş siparişlerini listeleyen sayfa. Order Service'den kullanıcı adına göre filtrelenerek getirilir.
 
@@ -297,10 +298,10 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 - 🔢 Sipariş ID
 
 <!-- Ekran görüntüsü: Sipariş Geçmişi -->
-<img width="1901" height="945" alt="image" src="https://github.com/user-attachments/assets/fd0227ba-6425-4a5f-ba4c-c29a25f4dd22" />
-<img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/6719ba98-41e3-4b72-9adc-f39d62dc6efc" />
-<img width="1918" height="944" alt="image" src="https://github.com/user-attachments/assets/69ec6262-603c-4afd-8ddf-fbb4bef96f17" />
-<img width="1917" height="855" alt="image" src="https://github.com/user-attachments/assets/704b3f81-107c-4807-9b78-290b2b965c72" />
+Profilim:<img width="1901" height="945" alt="image" src="https://github.com/user-attachments/assets/fd0227ba-6425-4a5f-ba4c-c29a25f4dd22" />
+Siparişlerim:<img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/6719ba98-41e3-4b72-9adc-f39d62dc6efc" />
+Gelen Mesaj: <img width="1918" height="944" alt="image" src="https://github.com/user-attachments/assets/69ec6262-603c-4afd-8ddf-fbb4bef96f17" />
+Giden Mesaj:<img width="1917" height="855" alt="image" src="https://github.com/user-attachments/assets/704b3f81-107c-4807-9b78-290b2b965c72" />
 
 
 ---
@@ -335,6 +336,7 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 **URL:** `/Admin/Dashboard/Index`
 
 **Açıklama:**  Admin Paneli içinde entegre edilmiş Rapid API bileşenidir. Dış kaynaklı verilerle admin panelini zenginleştirir. API sorguları anlık olarak çalışır ve sonuçlar ekranda listelenir.
+
 <!-- Ekran görüntüsü: Admin Rapid Api  -->
 <img width="1918" height="943" alt="image" src="https://github.com/user-attachments/assets/a5b82da2-cbe0-4f61-9c7a-d9a21332fdee" />
 <img width="1917" height="953" alt="image" src="https://github.com/user-attachments/assets/7c1deeba-1d45-4495-8103-7e54b9b910a3" />
@@ -416,20 +418,10 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 **Açıklama:** Tüm kullanıcılara ait Yorumların listelendiği ve yönetildiği sayfadır. Comment Service API'si üzerinden veriler çekilir.
 
-**Tablo Kolonları:**
-- Sipariş ID
-- Kullanıcı Adı
-- Ad Soyad
-- E-posta
-- Toplam Tutar
-- Adres
-- Tarih
-- İşlemler
-
 **İşlemler:**
-- 👁️ Sipariş detayı görüntüleme
-- ✏️ Sipariş güncelleme
-- 🗑️ Sipariş silme
+- 👁️ Comment görüntüleme
+- ✏️ Comment güncelleme
+- 🗑️ Comment silme
 
 <!-- Ekran görüntüsü: Admin Sipariş Listesi -->
 <img width="1920" height="953" alt="image" src="https://github.com/user-attachments/assets/2189719c-4cc5-46d1-92a8-55cf4550c7e9" />
@@ -512,7 +504,6 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 **Açıklama:** Siteye ait Markaların listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
-
 **İşlemler:**
 - ➕ Marka oluşturma
 - ✏️ Marka düzenleme
@@ -557,9 +548,9 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 **Açıklama:** Siteye ait Bilgi-Hakkımda kısmının listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- ➕ Cargo Firma oluşturma
-- ✏️ Cargo Firma düzenleme
-- 🗑️ Cargo Firma silme
+- ➕ Hakkımda oluşturma
+- ✏️ Hakkımda düzenleme
+- 🗑️ Hakkımda silme
 
 
 ---
