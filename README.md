@@ -58,63 +58,8 @@ Bu proje sayesinde:
 ## 🧱 Proje Mimarisi
 
 ```
-BerkayShop-MicroService/
-│
-├── 📁 BerkayShop.OcelotGateway/          → API Gateway (Tek Giriş Noktası)
-│   ├── ocelot.json                        → Tüm route tanımları
-│   └── Program.cs                         → JWT & Ocelot yapılandırması
-│
-├── 📁 IdentityServer/
-│   └── BerkayShop.IdentityServer/         → Kimlik Doğrulama Sunucusu
-│       ├── Config.cs                      → Client, Scope, Resource tanımları
-│       ├── SeedData.cs                    → Varsayılan kullanıcı verisi
-│       └── Program.cs
-│
-├── 📁 Services/
-│   │
-│   ├── 📁 Catalog/                        → Ürün Kataloğu Servisi
-│   │   └── BerkayShop.Services.Catalog/
-│   │       ├── Controllers/
-│   │       ├── Models/
-│   │       ├── Repositories/
-│   │       ├── Services/
-│   │       ├── Settings/
-│   │       └── Data/                      → MongoDB Seed
-│   │
-│   ├── 📁 Basket/                         → Sepet Servisi
-│   │   └── BerkayShop.Services.Basket/
-│   │       ├── Controllers/
-│   │       ├── Data/
-│   │       ├── DTOs/
-│   │       └── Services/
-│   │
-│   ├── 📁 Discount/                       → İndirim Servisi
-│   │   └── BerkayShop.Services.Discount/
-│   │       ├── Controllers/               → REST API
-│   │       ├── Services/                  → gRPC Server
-│   │       ├── Repositories/
-│   │       └── Extensions/
-│   │
-│   └── 📁 Order/                          → Sipariş Servisi (Clean Architecture)
-│       ├── BerkayShop.Services.Order.Domain/
-│       │   ├── Entities/                  → Aggregate Root, Value Objects
-│       │   └── Events/
-│       ├── BerkayShop.Services.Order.Application/
-│       │   ├── Commands/                  → CQRS Write Side
-│       │   ├── Queries/                   → CQRS Read Side
-│       │   ├── Behaviours/                → MediatR Pipeline
-│       │   ├── Mappings/
-│       │   └── EventConsumers/            → RabbitMQ Consumer
-│       └── BerkayShop.Services.Order.Infrastructure/
-│           ├── Persistence/
-│           └── Repositories/
-│
-└── 📁 Frontends/
-    └── BerkayShop.Web/                    → MVC Web Uygulaması
-        ├── Controllers/
-        ├── Services/                      → Typed HTTP Clients
-        ├── Models/
-        └── Views/
+<img width="827" height="907" alt="image" src="https://github.com/user-attachments/assets/c46c58ac-ccbf-4fd2-9aca-cf6cb07c9e57" />
+
 ```
 
 ---
