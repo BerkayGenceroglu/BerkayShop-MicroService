@@ -108,7 +108,22 @@ Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasy
 <img width="1920" height="601" alt="image" src="https://github.com/user-attachments/assets/d4c9fd3b-efd8-454b-a5c6-ba08fdacee3f" />
 
 
+<img width="223" height="240" alt="image" src="https://github.com/user-attachments/assets/82f1268f-898e-439b-a1fa-ea9bcf12a953" />
+
 ---
+
+## Service – Port Configuration
+Aşşağıdaki tabloda her mikroservisin dış dünyaya açıldığı port numaraları belirtilmiştir.Ocelot (API Gateway) tüm istemci (client) isteklerini 5000 portu üzerinden karşılar ve ilgili mikroservise yönlendirir.
+Diğer servisler (Identity, Catalog, Order, Basket vb.) kendi özel portlarında izole şekilde çalışır.UI uygulaması 7144 portu üzerinden erişilebilir durumdadır.
+**🎯 Bu yapı sayesinde:**
+-Servisler bağımsız olarak çalıştırılabilir.
+-Port çakışmaları engellenir.
+-Gateway üzerinden merkezi yönlendirme sağlanır.
+-Geliştirme ve test süreçleri daha kontrollü ilerler.
+
+<img width="223" height="240" alt="image" src="https://github.com/user-attachments/assets/3e49a5df-5de7-4db4-85df-be4717b2f890" />
+
+
 
 ## 🔐 Kimlik Doğrulama — Identity Server
 
