@@ -117,7 +117,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 - JWT Access Token + Refresh Token üretimi
 
 <!-- Ekran görüntüsü: Identity Server Login Sayfası -->
-![Identity Server Login](ekran-goruntuleri/identity-login.png)
+<img width="1907" height="949" alt="image" src="https://github.com/user-attachments/assets/37368852-de20-4f55-a35f-c8cfb003f290" />
 
 ---
 
@@ -134,7 +134,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 - Şifre / Şifre Tekrar
 
 <!-- Ekran görüntüsü: Identity Server Register Sayfası -->
-![Identity Server Register](ekran-goruntuleri/identity-register.png)
+<img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/5ce6de33-11c0-475b-a65e-e6b5ed4a69cb" />
 
 ---
 
