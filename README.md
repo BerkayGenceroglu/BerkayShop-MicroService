@@ -606,5 +606,5 @@ Her türlü geri bildirime açığım.
 **İyi kodlamalar! 🚀**
 
 <p align="center">
-  ⭐ Beğendiyseniz yıldız vermeyi unutmayın!
-</p>
+ <img width="595" height="548" alt="image" src="https://github.com/user-attachments/assets/742caf97-a38b-4deb-8e26-238921a5a87a" />
+</p>>
