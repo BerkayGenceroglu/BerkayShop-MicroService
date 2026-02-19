@@ -159,7 +159,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 <!-- Ekran görüntüsü: Ana Sayfa -->
 <img width="1920" height="912" alt="image" src="https://github.com/user-attachments/assets/fdae9a8d-43c5-49e2-9f94-0d01d3acb9c0" />
 <img width="1920" height="683" alt="image" src="https://github.com/user-attachments/assets/035c433e-08d1-4dbe-9074-4995a5f66d2f" />
-<img width="1920" height="221" alt="image" src="https://github.com/user-attachments/assets/f668cf6d-b6e5-41e8-9c79-896348d186a7" />
+<img width="1919" height="679" alt="image" src="https://github.com/user-attachments/assets/1ac259aa-6f85-4a3d-86b1-703dbd597353" />
 <img width="1920" height="949" alt="image" src="https://github.com/user-attachments/assets/151c0050-2733-468f-9cf2-12eb8c6fd848" />
 <img width="1920" height="947" alt="image" src="https://github.com/user-attachments/assets/8fe7a7b5-b362-4f1e-9437-4bcb8a131675" />
 <img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/fb5ebaf4-2b14-4256-ba47-908ece3b59cf" />
