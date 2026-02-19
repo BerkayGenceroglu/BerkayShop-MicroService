@@ -95,8 +95,18 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ---
 
+## 🐳 Docker - Veritabanı ve Port Yönetimi
 
-## 🖥️ Servis Detayları ve Sayfalar
+Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasyonu ilkesini korumak amacıyla Docker altyapısı kullanılarak geliştirilmiştir. Her mikroservis bağımsız bir konteyner içerisinde çalışır ve kendi veritabanı ile haberleşir.
+**🎯 Amaç:**
+-Servisler arası bağımlılığı minimuma indirmek
+-Ortam bağımsız (environment-agnostic) kurulum sağlamak
+-Hızlı geliştirme ve dağıtım (deployment) süreci oluşturmak
+-Port çakışmalarını ve konfigürasyon karmaşasını önlemek
+
+<!-- Ekran görüntüsü: Docker Container  -->
+<img width="1920" height="601" alt="image" src="https://github.com/user-attachments/assets/d4c9fd3b-efd8-454b-a5c6-ba08fdacee3f" />
+
 
 ---
 
