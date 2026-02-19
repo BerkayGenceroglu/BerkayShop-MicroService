@@ -566,9 +566,7 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 <img width="1919" height="948" alt="image" src="https://github.com/user-attachments/assets/b7df59eb-e928-4ac0-b277-c02edc6899ea" />
 
 
-<img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/acd8453f-8a3f-4601-bf6c-1ba93033fe2e" />
-<img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/71ec72be-8347-4a0e-a93d-61d4c01dac48" />
-<img width="1918" height="922" alt="image" src="https://github.com/user-attachments/assets/e09af030-5817-4614-a4ca-b5ec08083cd4" />
+
 
 ### 13. Kargo Firmaları Yönetimi (Admin — Discount)
 
@@ -600,7 +598,9 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 - ➕ Hakkımda oluşturma
 - ✏️ Hakkımda düzenleme
 - 🗑️ Hakkımda silme
-
+<img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/acd8453f-8a3f-4601-bf6c-1ba93033fe2e" />
+<img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/71ec72be-8347-4a0e-a93d-61d4c01dac48" />
+<img width="1918" height="922" alt="image" src="https://github.com/user-attachments/assets/e09af030-5817-4614-a4ca-b5ec08083cd4" />
 
 ---
 ### 15. Slider Yönetimi (Admin — Slider)
