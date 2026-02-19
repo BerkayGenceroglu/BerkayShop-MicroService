@@ -99,7 +99,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 **Açıklama:** Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasyonu ilkesini korumak amacıyla Docker altyapısı kullanılarak geliştirilmiştir. Her mikroservis bağımsız bir konteyner içerisinde çalışır ve kendi veritabanı ile haberleşir.
 
-** Amaç :**
+**Amaç :**
 - Servisler arası bağımlılığı minimuma indirmek
 - Ortam bağımsız (environment-agnostic) kurulum sağlamak
 - Hızlı geliştirme ve dağıtım (deployment) süreci oluşturmak
