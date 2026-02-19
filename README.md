@@ -157,7 +157,13 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 - 📊 İstatistikler — Toplam ürün, kategori, müşteri sayısı
 
 <!-- Ekran görüntüsü: Ana Sayfa -->
-![Ana Sayfa](ekran-goruntuleri/anasayfa.png)
+<img width="1920" height="912" alt="image" src="https://github.com/user-attachments/assets/fdae9a8d-43c5-49e2-9f94-0d01d3acb9c0" />
+<img width="1919" height="214" alt="image" src="https://github.com/user-attachments/assets/1ed1220c-e2a8-4ec0-b233-7f1cd2149a4c" />
+<img width="1920" height="221" alt="image" src="https://github.com/user-attachments/assets/f668cf6d-b6e5-41e8-9c79-896348d186a7" />
+<img width="1920" height="949" alt="image" src="https://github.com/user-attachments/assets/151c0050-2733-468f-9cf2-12eb8c6fd848" />
+<img width="1920" height="947" alt="image" src="https://github.com/user-attachments/assets/8fe7a7b5-b362-4f1e-9437-4bcb8a131675" />
+<img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/fb5ebaf4-2b14-4256-ba47-908ece3b59cf" />
+
 
 ---
 
@@ -175,10 +181,12 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 - 🔍 Kategoriye göre filtreleme
 
 <!-- Ekran görüntüsü: Ürün Listeleme -->
-![Ürün Listesi 1](ekran-goruntuleri/urun-listesi-1.png)
+<img width="1920" height="952" alt="image" src="https://github.com/user-attachments/assets/b562d21f-7869-4aaa-a7df-48570d447e67" />
+
 
 <!-- Ekran görüntüsü: Ürün Listeleme Filtreli -->
-![Ürün Listesi 2](ekran-goruntuleri/urun-listesi-2.png)
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/674a0e87-23ea-4a22-9993-6f63891288e8" />
+
 
 ---
 
@@ -196,7 +204,11 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 - 🔗 Benzer ürünler bölümü
 
 <!-- Ekran görüntüsü: Ürün Detay -->
-![Ürün Detay](ekran-goruntuleri/urun-detay.png)
+<img width="1920" height="953" alt="image" src="https://github.com/user-attachments/assets/dc977ad9-6a64-43a4-b927-84cc0bf6ff8b" />
+<img width="1901" height="867" alt="image" src="https://github.com/user-attachments/assets/c3692e0d-c500-4253-aca2-c9b36b011a9a" />
+<img width="1920" height="871" alt="image" src="https://github.com/user-attachments/assets/40a64840-3e67-45f5-abf4-d11bb8faed9f" />
+<img width="1913" height="857" alt="image" src="https://github.com/user-attachments/assets/650b0d99-b1c5-4663-bfb6-673b0a23d205" />
+
 
 ---
 
@@ -226,10 +238,12 @@ Toplam fiyat güncellenir
 ```
 
 <!-- Ekran görüntüsü: Sepet Sayfası -->
-![Sepet 1](ekran-goruntuleri/sepet-1.png)
+<img width="1920" height="948" alt="image" src="https://github.com/user-attachments/assets/36fe24b7-95ce-4cfd-a019-fc52b18b0fa0" />
+
 
 <!-- Ekran görüntüsü: Sepet Kupon Uygulandı -->
-![Sepet 2](ekran-goruntuleri/sepet-2.png)
+<img width="1920" height="949" alt="image" src="https://github.com/user-attachments/assets/b2b461ab-03bf-4205-bcc9-59c80b383939" />
+
 
 ---
 
@@ -257,10 +271,13 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 ```
 
 <!-- Ekran görüntüsü: Checkout Formu -->
-![Checkout 1](ekran-goruntuleri/checkout-1.png)
+<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/73414f01-47d7-4ccd-8156-bac25ab89b42" />
+
 
 <!-- Ekran görüntüsü: Checkout Ödeme Bilgileri -->
-![Checkout 2](ekran-goruntuleri/checkout-2.png)
+<img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/f912c261-fcdd-47b3-930b-f9ed5f3acf65" />
+<img width="1910" height="914" alt="image" src="https://github.com/user-attachments/assets/f6d7cc6b-4540-46b4-90c3-f5b30a42b8a2" />
+
 
 ---
 
@@ -277,7 +294,11 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 - 🔢 Sipariş ID
 
 <!-- Ekran görüntüsü: Sipariş Geçmişi -->
-![Sipariş Listesi](ekran-goruntuleri/siparis-listesi.png)
+<img width="1901" height="945" alt="image" src="https://github.com/user-attachments/assets/fd0227ba-6425-4a5f-ba4c-c29a25f4dd22" />
+<img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/6719ba98-41e3-4b72-9adc-f39d62dc6efc" />
+<img width="1918" height="944" alt="image" src="https://github.com/user-attachments/assets/69ec6262-603c-4afd-8ddf-fbb4bef96f17" />
+<img width="1917" height="855" alt="image" src="https://github.com/user-attachments/assets/704b3f81-107c-4807-9b78-290b2b965c72" />
+
 
 ---
 
