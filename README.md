@@ -303,436 +303,177 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 
 ---
 
-## 🔌 API Gateway — Ocelot
+## 🛡️ Admin Paneli
 
-### 9. Gateway Route Yapısı
+Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne sahip kullanıcılar erişebilir.
 
-**URL:** `http://localhost:5010`
+**Giriş URL'i:** `http://localhost:5000/Admin`
 
-**Açıklama:** Tüm mikroservislerin önünde duran tek giriş noktasıdır. Frontend ve dış istemciler yalnızca bu adrese istek yapar; Gateway doğru servise yönlendirir.
-
-**Görevleri:**
-- 🔀 İstekleri ilgili servise yönlendirme
-- 🛡️ JWT token doğrulama
-- ⚡ Rate Limiting
-- ⚖️ Load Balancing
-
-**Tüm Route Haritası:**
-
-| Gateway URL | Yönlendiği Servis | Method |
-|-------------|-------------------|--------|
-| `/services/catalog/api/products` | Catalog :5011 | GET, POST, PUT, DELETE |
-| `/services/catalog/api/products/{id}` | Catalog :5011 | GET |
-| `/services/catalog/api/categories` | Catalog :5011 | GET |
-| `/services/basket/api/basket/{username}` | Basket :5013 | GET, POST, DELETE |
-| `/services/basket/api/basket/checkout` | Basket :5013 | POST |
-| `/services/discount/api/discount/{name}` | Discount :5014 | GET, POST, PUT, DELETE |
-| `/services/order/api/v1/order/{username}` | Order :5015 | GET |
-| `/services/order/api/v1/order` | Order :5015 | POST, PUT, DELETE |
-
-<!-- Ekran görüntüsü: Postman ile Gateway testi -->
-![Gateway Postman](ekran-goruntuleri/gateway-postman.png)
+**Erişim:** Identity Server üzerinden Admin rolüyle giriş yapılır.
 
 ---
 
-## 🏷️ Catalog Service
+### 17. Dashboard (Admin Ana Sayfa)
 
-### 10. Ürün API (Swagger)
+**URL:** `/Admin/Dashboard/Index`
 
-**URL:** `http://localhost:5011/swagger`
+**Açıklama:** Admin panelinin kontrol merkezidir. Tüm servislerdeki anlık verileri bir arada gösterir.
 
-**Açıklama:** MongoDB tabanlı ürün ve kategori yönetim servisidir. Okuma ağırlıklı yapısıyla hızlı yanıt süresi sunar.
+**İstatistikler:**
+- 🚗 Toplam Ürün Sayısı
+- 📦 Toplam Sipariş Sayısı
+- 👤 Toplam Kullanıcı Sayısı
+- 💰 Toplam Satış Tutarı
+- 🏷️ Toplam Kategori Sayısı
+- 💸 Aktif Kupon Sayısı
 
-**Endpoint'ler:**
+<!-- Ekran görüntüsü: Admin Dashboard 1 -->
+![Admin Dashboard 1](ekran-goruntuleri/admin-dashboard-1.png)
 
-| Method | Endpoint | Açıklama | Auth |
-|--------|----------|----------|------|
-| `GET` | `/api/products` | Tüm ürünler | ❌ |
-| `GET` | `/api/products/{id}` | Ürün detayı | ❌ |
-| `GET` | `/api/products/getproductbycategory/{category}` | Kategoriye göre | ❌ |
-| `POST` | `/api/products` | Ürün ekle | ✅ |
-| `PUT` | `/api/products` | Ürün güncelle | ✅ |
-| `DELETE` | `/api/products/{id}` | Ürün sil | ✅ |
-| `GET` | `/api/categories` | Kategoriler | ❌ |
-
-**Veri Modeli:**
-```json
-{
-  "id": "64f1b2c3d4e5f6a7b8c9d0e1",
-  "name": "Samsung Galaxy S24",
-  "description": "Amiral gemisi akıllı telefon",
-  "price": 45999.99,
-  "imageFile": "samsung-s24.jpg",
-  "category": {
-    "id": "64f1b2c3d4e5f6a7b8c9d0e2",
-    "name": "Elektronik"
-  }
-}
-```
-
-<!-- Ekran görüntüsü: Catalog Service Swagger -->
-![Catalog Swagger](ekran-goruntuleri/catalog-swagger.png)
+<!-- Ekran görüntüsü: Admin Dashboard 2 -->
+![Admin Dashboard 2](ekran-goruntuleri/admin-dashboard-2.png)
 
 ---
 
-## 🛒 Basket Service
+### 18. Ürün Yönetimi (Admin — Catalog)
 
-### 11. Sepet API (Swagger)
+**URL:** `/Admin/Catalog/Index`
 
-**URL:** `http://localhost:5013/swagger`
+**Açıklama:** Tüm ürünlerin listelendiği, eklendiği, düzenlendiği ve silindiği yönetim sayfasıdır. Catalog Service API'si üzerinden işlemler gerçekleştirilir.
 
-**Açıklama:** Redis tabanlı sepet yönetim servisidir. Her kullanıcının sepeti Redis'te key-value olarak saklanır.
+**Tablo Kolonları:**
+- ID, Ürün Adı, Kategori, Fiyat, Görsel, İşlemler
 
-**Endpoint'ler:**
+**İşlemler:**
+- ➕ Yeni ürün ekleme
+- ✏️ Ürün düzenleme
+- 🗑️ Ürün silme
 
-| Method | Endpoint | Açıklama | Auth |
-|--------|----------|----------|------|
-| `GET` | `/api/basket/{username}` | Sepeti getir | ✅ |
-| `POST` | `/api/basket` | Sepet güncelle | ✅ |
-| `DELETE` | `/api/basket/{username}` | Sepeti sil | ✅ |
-| `POST` | `/api/basket/checkout` | Sipariş ver | ✅ |
+<!-- Ekran görüntüsü: Admin Ürün Listesi -->
+![Admin Ürün Listesi](ekran-goruntuleri/admin-urun-listesi.png)
 
-**Veri Modeli:**
-```json
-{
-  "username": "berkay",
-  "items": [
-    {
-      "productId": "64f1b2c3d4e5f6a7b8c9d0e1",
-      "productName": "Samsung Galaxy S24",
-      "quantity": 2,
-      "price": 45999.99,
-      "imageFile": "samsung-s24.jpg"
-    }
-  ]
-}
-```
+**Ürün Ekleme Formu:**
 
-<!-- Ekran görüntüsü: Basket Service Swagger -->
-![Basket Swagger](ekran-goruntuleri/basket-swagger.png)
+**Form Alanları:**
+- Ürün adı
+- Açıklama
+- Fiyat
+- Görsel URL
+- Kategori seçimi
+
+<!-- Ekran görüntüsü: Admin Ürün Ekleme -->
+![Admin Ürün Ekleme](ekran-goruntuleri/admin-urun-ekle.png)
+
+**Ürün Güncelleme:**
+
+<!-- Ekran görüntüsü: Admin Ürün Güncelleme -->
+![Admin Ürün Güncelleme](ekran-goruntuleri/admin-urun-guncelle.png)
 
 ---
 
-## 💸 Discount Service
+### 19. Kategori Yönetimi (Admin — Category)
 
-### 12. İndirim API (Swagger)
+**URL:** `/Admin/Category/Index`
 
-**URL:** `http://localhost:5014/swagger`
+**Açıklama:** Ürün kategorilerini yönetme sayfasıdır. Catalog Service'e bağlıdır.
 
-**Açıklama:** PostgreSQL + Dapper ile geliştirilmiş kupon yönetim servisidir. REST API'ye ek olarak gRPC sunucu olarak da çalışır.
+**İşlemler:**
+- Kategori listesi görüntüleme
+- Yeni kategori ekleme
+- Kategori düzenleme ve silme
 
-**REST Endpoint'ler:**
+**Form Alanları:**
+- Kategori adı
 
-| Method | Endpoint | Açıklama |
-|--------|----------|----------|
-| `GET` | `/api/discount/{productName}` | Kuponu getir |
-| `POST` | `/api/discount` | Kupon oluştur |
-| `PUT` | `/api/discount` | Kupon güncelle |
-| `DELETE` | `/api/discount/{productName}` | Kupon sil |
+<!-- Ekran görüntüsü: Admin Kategori Listesi -->
+![Admin Kategori Listesi](ekran-goruntuleri/admin-kategori-listesi.png)
 
-**gRPC Servisi:**
-```protobuf
-service DiscountProtoService {
-  rpc GetDiscount(GetDiscountRequest) returns (CouponModel);
-  rpc CreateDiscount(CreateDiscountRequest) returns (CouponModel);
-  rpc UpdateDiscount(UpdateDiscountRequest) returns (CouponModel);
-  rpc DeleteDiscount(DeleteDiscountRequest) returns (DeleteDiscountResponse);
-}
-```
-
-**Veri Modeli:**
-```json
-{
-  "id": 1,
-  "productName": "Samsung Galaxy S24",
-  "description": "Teknoloji fuarı kampanyası",
-  "amount": 2000
-}
-```
-
-<!-- Ekran görüntüsü: Discount Service Swagger -->
-![Discount Swagger](ekran-goruntuleri/discount-swagger.png)
+<!-- Ekran görüntüsü: Admin Kategori Ekleme -->
+![Admin Kategori Ekleme](ekran-goruntuleri/admin-kategori-ekle.png)
 
 ---
 
-## 📦 Order Service
+### 20. Sipariş Yönetimi (Admin — Orders)
 
-### 13. Sipariş API (Swagger)
+**URL:** `/Admin/Order/Index`
 
-**URL:** `http://localhost:5015/swagger`
+**Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
 
-**Açıklama:** Clean Architecture, DDD ve CQRS deseniyle geliştirilmiş sipariş yönetim servisidir. RabbitMQ üzerinden `BasketCheckoutEvent`'i tüketir.
+**Tablo Kolonları:**
+- Sipariş ID
+- Kullanıcı Adı
+- Ad Soyad
+- E-posta
+- Toplam Tutar
+- Adres
+- Tarih
+- İşlemler
 
-**Endpoint'ler:**
+**İşlemler:**
+- 👁️ Sipariş detayı görüntüleme
+- ✏️ Sipariş güncelleme
+- 🗑️ Sipariş silme
 
-| Method | Endpoint | Açıklama | Auth |
-|--------|----------|----------|------|
-| `GET` | `/api/v1/order/{username}` | Kullanıcı siparişleri | ✅ |
-| `POST` | `/api/v1/order` | Sipariş oluştur | ✅ |
-| `PUT` | `/api/v1/order` | Sipariş güncelle | ✅ |
-| `DELETE` | `/api/v1/order/{id}` | Sipariş sil | ✅ |
+<!-- Ekran görüntüsü: Admin Sipariş Listesi -->
+![Admin Sipariş Listesi](ekran-goruntuleri/admin-siparis-listesi.png)
 
-**CQRS Akışı:**
-```
-HTTP İsteği
-    ↓
-OrderController
-    ↓
-MediatR.Send(Command/Query)
-    ↓
-ValidationBehaviour → LoggingBehaviour
-    ↓
-CommandHandler / QueryHandler
-    ↓
-IOrderRepository → SQL Server
-```
-
-**Veri Modeli:**
-```json
-{
-  "id": 1,
-  "userName": "berkay",
-  "totalPrice": 89999.98,
-  "firstName": "Berkay",
-  "lastName": "Gençeroğlu",
-  "emailAddress": "berkay@example.com",
-  "addressLine": "Örnek Caddesi No:1",
-  "country": "Türkiye",
-  "state": "İstanbul",
-  "zipCode": "34000",
-  "cardName": "BERKAY GENCEROĞLU",
-  "cardNumber": "4111111111111111",
-  "expiration": "12/26",
-  "cvv": "123",
-  "paymentMethod": 1
-}
-```
-
-<!-- Ekran görüntüsü: Order Service Swagger -->
-![Order Swagger](ekran-goruntuleri/order-swagger.png)
+<!-- Ekran görüntüsü: Admin Sipariş Detay -->
+![Admin Sipariş Detay](ekran-goruntuleri/admin-siparis-detay.png)
 
 ---
 
-## 🔑 Identity Server Yapılandırması
+### 21. İndirim / Kupon Yönetimi (Admin — Discount)
 
-### 14. Token Alma — Postman
+**URL:** `/Admin/Discount/Index`
 
-**URL:** `http://localhost:5001/connect/token`
+**Açıklama:** Kupon kodlarının oluşturulduğu, güncellendiği ve silindiği yönetim sayfasıdır. Discount Service API'si üzerinden işlem yapılır.
 
-**Açıklama:** API testleri için Postman üzerinden token alınabilir. Token tüm servislerdeki korumalı endpoint'lere erişimde kullanılır.
+**Tablo Kolonları:**
+- ID, Ürün Adı, Açıklama, İndirim Tutarı, İşlemler
 
-**İstek:**
-```
-POST http://localhost:5001/connect/token
-Content-Type: application/x-www-form-urlencoded
+**İşlemler:**
+- ➕ Yeni kupon oluşturma
+- ✏️ Kupon düzenleme
+- 🗑️ Kupon silme
 
-client_id     = BerkayShopClientCredentials
-client_secret = secret
-grant_type    = client_credentials
-scope         = gateway_fullpermission
-```
+**Form Alanları:**
+- Ürün adı (hangi ürüne kupon uygulanacak)
+- Açıklama
+- İndirim tutarı (TL)
 
-**Yanıt:**
-```json
-{
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "expires_in": 3600,
-  "token_type": "Bearer",
-  "scope": "gateway_fullpermission"
-}
-```
+<!-- Ekran görüntüsü: Admin Kupon Listesi -->
+![Admin Kupon Listesi](ekran-goruntuleri/admin-kupon-listesi.png)
 
-**Kullanım:**
-```
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
-```
+<!-- Ekran görüntüsü: Admin Kupon Ekleme -->
+![Admin Kupon Ekleme](ekran-goruntuleri/admin-kupon-ekle.png)
 
-**Tanımlı Scope'lar:**
-
-| Scope | Açıklama |
-|-------|----------|
-| `catalog_fullpermission` | Catalog API'ye tam erişim |
-| `basket_fullpermission` | Basket API'ye tam erişim |
-| `discount_fullpermission` | Discount API'ye tam erişim |
-| `order_fullpermission` | Order API'ye tam erişim |
-| `gateway_fullpermission` | Gateway üzerinden tüm erişim |
-
-<!-- Ekran görüntüsü: Postman Token Alma -->
-![Postman Token](ekran-goruntuleri/postman-token.png)
+<!-- Ekran görüntüsü: Admin Kupon Güncelleme -->
+![Admin Kupon Güncelleme](ekran-goruntuleri/admin-kupon-guncelle.png)
 
 ---
 
-## 🔄 Servisler Arası İletişim Diyagramı
+### 22. Kullanıcı Yönetimi (Admin — Users)
 
-### 15. gRPC — Basket → Discount
+**URL:** `/Admin/User/Index`
 
-```
-┌──────────────────────────────────────────────┐
-│             Basket Service                    │
-│  POST /api/basket/checkout çağrıldığında...  │
-└─────────────────────┬────────────────────────┘
-                      │
-                      │  gRPC (Protobuf)
-                      │  GetDiscount(productName)
-                      ↓
-┌──────────────────────────────────────────────┐
-│            Discount Service                   │
-│   PostgreSQL'den kuponu sorgular             │
-│   CouponModel { Amount: 2000 } döner         │
-└─────────────────────┬────────────────────────┘
-                      │
-                      ↓
-             Toplam fiyat hesaplanır
-             İndirim uygulanır
-```
+**Açıklama:** Identity Server üzerinde kayıtlı tüm kullanıcıların listelendiği ve rol yönetiminin yapıldığı sayfadır.
 
-### 16. RabbitMQ — Basket → Order
+**Tablo Kolonları:**
+- Kullanıcı Adı, Ad Soyad, E-posta, Rol, İşlemler
 
-```
-┌──────────────────────────────────────────────┐
-│             Basket Service                    │
-│   BasketCheckoutEvent yayınlar               │
-└─────────────────────┬────────────────────────┘
-                      │
-                      │  AMQP (RabbitMQ)
-                      │  Exchange: basket-checkout
-                      ↓
-                 ┌──────────┐
-                 │ RabbitMQ │
-                 │  Queue   │
-                 └────┬─────┘
-                      │
-                      ↓
-┌──────────────────────────────────────────────┐
-│              Order Service                    │
-│   BasketCheckoutConsumer event'i alır        │
-│   CheckoutOrderCommand → MediatR             │
-│   SQL Server'a sipariş kaydedilir            │
-└──────────────────────────────────────────────┘
-```
+**İşlemler:**
+- 👁️ Kullanıcı bilgilerini görüntüleme
+- 🔑 Rol atama / kaldırma (Admin / User)
+- 🗑️ Kullanıcı silme
 
-<!-- Ekran görüntüsü: RabbitMQ Yönetim Paneli -->
-![RabbitMQ Panel](ekran-goruntuleri/rabbitmq-panel.png)
+<!-- Ekran görüntüsü: Admin Kullanıcı Listesi -->
+![Admin Kullanıcı Listesi](ekran-goruntuleri/admin-kullanici-listesi.png)
+
+<!-- Ekran görüntüsü: Admin Kullanıcı Rol Atama -->
+![Admin Kullanıcı Rol](ekran-goruntuleri/admin-kullanici-rol.png)
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
-
-### Ön Gereksinimler
-
-| Araç | Versiyon |
-|------|----------|
-| .NET SDK | 8.0+ |
-| Docker Desktop | Son sürüm |
-| Visual Studio | 2022+ |
-| Postman | Herhangi |
-
----
-
-### Adım 1 — Repoyu Klonlayın
-
-```bash
-git clone https://github.com/BerkayGenceroglu/BerkayShop-MicroService.git
-cd BerkayShop-MicroService
-```
-
----
-
-### Adım 2 — Docker ile Altyapıyı Başlatın
-
-```bash
-# MongoDB — Catalog Service için
-docker run -d --name berkayshop-mongo -p 27017:27017 mongo
-
-# Redis — Basket Service için
-docker run -d --name berkayshop-redis -p 6379:6379 redis
-
-# PostgreSQL — Discount Service için
-docker run -d --name berkayshop-postgres \
-  -e POSTGRES_USER=admin \
-  -e POSTGRES_PASSWORD=admin1234 \
-  -e POSTGRES_DB=DiscountDb \
-  -p 5432:5432 postgres
-
-# SQL Server — Order & Identity için
-docker run -d --name berkayshop-mssql \
-  -e "ACCEPT_EULA=Y" \
-  -e "SA_PASSWORD=Admin1234!" \
-  -p 1433:1433 \
-  mcr.microsoft.com/mssql/server:2019-latest
-
-# RabbitMQ — Mesaj kuyruğu için
-docker run -d --name berkayshop-rabbitmq \
-  -p 5672:5672 -p 15672:15672 \
-  rabbitmq:3-management
-```
-
----
-
-### Adım 3 — Servisleri Başlatın
-
-Her servisi ayrı bir terminalde çalıştırın ya da Visual Studio'da **Multiple Startup Projects** yapılandırması kullanın.
-
-```bash
-# 1. Identity Server (önce bu başlamalı)
-cd IdentityServer/BerkayShop.IdentityServer
-dotnet run
-
-# 2. Catalog Service
-cd Services/Catalog/BerkayShop.Services.Catalog
-dotnet run
-
-# 3. Basket Service
-cd Services/Basket/BerkayShop.Services.Basket
-dotnet run
-
-# 4. Discount Service
-cd Services/Discount/BerkayShop.Services.Discount
-dotnet run
-
-# 5. Order Service
-cd Services/Order/BerkayShop.Services.Order.API
-dotnet run
-
-# 6. API Gateway (servisler ayaktayken başlat)
-cd BerkayShop.OcelotGateway
-dotnet run
-
-# 7. Frontend
-cd Frontends/BerkayShop.Web
-dotnet run
-```
-
----
-
-### Adım 4 — Uygulamaya Erişin
-
-| Servis | URL |
-|--------|-----|
-| 🌐 Frontend | http://localhost:5000 |
-| 🔐 Identity Server | http://localhost:5001 |
-| 🌐 API Gateway | http://localhost:5010 |
-| 📦 Catalog Swagger | http://localhost:5011/swagger |
-| 🛒 Basket Swagger | http://localhost:5013/swagger |
-| 💸 Discount Swagger | http://localhost:5014/swagger |
-| 📋 Order Swagger | http://localhost:5015/swagger |
-| 🐇 RabbitMQ Panel | http://localhost:15672 (guest/guest) |
-
----
-
-
-
-## 📚 Kaynaklar
-
-Bu proje geliştirilirken yararlanılan makaleler ve kaynaklar `Articles.txt` dosyasında listelenmiştir.
-
-- [Microsoft Microservices Architecture Guide](https://dotnet.microsoft.com/learn/aspnet/microservices-architecture)
-- [Ocelot Dokümantasyonu](https://ocelot.readthedocs.io/)
-- [IdentityServer4 Dokümantasyonu](https://identityserver4.readthedocs.io/)
-- [MassTransit Dokümantasyonu](https://masstransit.io/)
-- [gRPC for .NET](https://docs.microsoft.com/aspnet/core/grpc/)
-
----
 
 ## 👤 Geliştirici
 
