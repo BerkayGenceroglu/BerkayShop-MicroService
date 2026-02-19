@@ -99,11 +99,11 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 **Açıklama:** Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasyonu ilkesini korumak amacıyla Docker altyapısı kullanılarak geliştirilmiştir. Her mikroservis bağımsız bir konteyner içerisinde çalışır ve kendi veritabanı ile haberleşir.
 
-### Amaç
--Servisler arası bağımlılığı minimuma indirmek
--Ortam bağımsız (environment-agnostic) kurulum sağlamak
--Hızlı geliştirme ve dağıtım (deployment) süreci oluşturmak
--Port çakışmalarını ve konfigürasyon karmaşasını önlemek
+** Amaç :**
+- Servisler arası bağımlılığı minimuma indirmek
+- Ortam bağımsız (environment-agnostic) kurulum sağlamak
+- Hızlı geliştirme ve dağıtım (deployment) süreci oluşturmak
+- Port çakışmalarını ve konfigürasyon karmaşasını önlemek
 
 <!-- Ekran görüntüsü: Docker Container  -->
 <img width="1920" height="601" alt="image" src="https://github.com/user-attachments/assets/d4c9fd3b-efd8-454b-a5c6-ba08fdacee3f" />
@@ -115,11 +115,11 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 **Açıklama:** Aşşağıdaki tabloda her mikroservisin dış dünyaya açıldığı port numaraları belirtilmiştir.Ocelot (API Gateway) tüm istemci (client) isteklerini 5000 portu üzerinden karşılar ve ilgili mikroservise yönlendirir.
 Diğer servisler (Identity, Catalog, Order, Basket vb.) kendi özel portlarında izole şekilde çalışır.UI uygulaması 7144 portu üzerinden erişilebilir durumdadır.
 
-### Bu yapı sayesinde:
--Servisler bağımsız olarak çalıştırılabilir.
--Port çakışmaları engellenir.
--Gateway üzerinden merkezi yönlendirme sağlanır.
--Geliştirme ve test süreçleri daha kontrollü ilerler.
+**Bu yapı sayesinde :**
+- Servisler bağımsız olarak çalıştırılabilir.
+- Port çakışmaları engellenir.
+- Gateway üzerinden merkezi yönlendirme sağlanır.
+- Geliştirme ve test süreçleri daha kontrollü ilerler.
 
 <img width="217" height="252" alt="image" src="https://github.com/user-attachments/assets/18ad426e-ca62-49e0-914e-6afccff519fe" />
 
