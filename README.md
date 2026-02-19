@@ -317,13 +317,13 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 **URL:** `Order/Index?LastPriceAfterDiscount=`
 
 **Açıklama:** Kullanıcıların sistem yöneticileri ile iletişime geçmesini sağlayan sayfadır. Ziyaretçiler bu form üzerinden mesaj göndererek soru, öneri veya geri bildirim iletebilirler.Gönderilen mesajlar backend tarafında ilgili servise iletilir ve admin paneli üzerinden görüntülenebilir.
+Form başarıyla gönderildiğinde kullanıcıya bilgilendirme mesajı gösterilir.
 
 **Form Alanları:**
 - 👤 İsim – Soyisim
 - 📧 E-posta Adresi
 - 🏷️ Konu
 - 💬 Mesaj İçeriği
-Form başarıyla gönderildiğinde kullanıcıya bilgilendirme mesajı gösterilir.
 
 <!-- Ekran görüntüsü: Contact Formu -->
 <img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/e4b1fccc-26ca-4c67-8050-74efc47002cf" />
