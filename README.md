@@ -329,10 +329,23 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 <!-- Ekran görüntüsü: Admin Dashboard 1 -->
 <img width="1920" height="950" alt="image" src="https://github.com/user-attachments/assets/6a86d6e3-bbe8-4033-9e53-f7c92e3cf201" />
 
+### 18. Rapid Api Veri Araması 
+
+**URL:** `/Admin/Dashboard/Index`
+
+**Açıklama:** Admin panelinin kontrol merkezidir. Tüm servislerdeki anlık verileri bir arada gösterir.
+
+**İstatistikler:**
+- 🚗 Toplam Ürün Sayısı
+- 📦 Toplam Sipariş Sayısı
+- 👤 Toplam Kullanıcı Sayısı
+- 💰 Toplam Satış Tutarı
+- 🏷️ Toplam Kategori Sayısı
+- 💸 Aktif Kupon Sayısı
 
 <!-- Ekran görüntüsü: Admin Dashboard 2 -->
-<img width="1917" height="953" alt="image" src="https://github.com/user-attachments/assets/7c1deeba-1d45-4495-8103-7e54b9b910a3" />
 <img width="1918" height="943" alt="image" src="https://github.com/user-attachments/assets/a5b82da2-cbe0-4f61-9c7a-d9a21332fdee" />
+<img width="1917" height="953" alt="image" src="https://github.com/user-attachments/assets/7c1deeba-1d45-4495-8103-7e54b9b910a3" />
 <img width="1920" height="949" alt="image" src="https://github.com/user-attachments/assets/b45d6d9a-b94d-4a7e-923d-ebac2a2682c0" />
 <img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/7f137b84-1b9d-4fa3-a1cf-05538ca199d3" />
 <img width="1920" height="953" alt="image" src="https://github.com/user-attachments/assets/eabe8e8b-d12e-4a60-be09-eeaae6df3023" />
