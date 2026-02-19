@@ -147,7 +147,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ### 3. Ana Sayfa (Home)
 
-**URL:** `http://localhost:5000`
+**URL:** `Default/DefaultPage`
 
 **Açıklama:** Uygulamanın vitrin sayfasıdır. Kullanıcıyı karşılayan ilk ekrandır.
 
@@ -171,7 +171,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ### 4. Ürün Listeleme Sayfası (Catalog)
 
-**URL:** `http://localhost:5000/Catalog`
+**URL:** `ProductList/AllProductList?categoryId`
 
 **Açıklama:** Tüm ürünlerin listelendiği ve filtrelenebildiği ana katalog sayfasıdır. Catalog Service'den Gateway üzerinden çekilen veriler görüntülenir.
 
@@ -194,7 +194,7 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ### 5. Ürün Detay Sayfası
 
-**URL:** `http://localhost:5000/Catalog/Detail/{id}`
+**URL:** `ProductList/ProductDetail?productId`
 
 **Açıklama:** Seçilen ürünün tüm detaylarını gösteren sayfa.
 
