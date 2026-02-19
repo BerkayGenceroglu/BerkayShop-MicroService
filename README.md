@@ -97,8 +97,9 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 
 ## 🐳 Docker - Veritabanı ve Port Yönetimi
 
-Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasyonu ilkesini korumak amacıyla Docker altyapısı kullanılarak geliştirilmiştir. Her mikroservis bağımsız bir konteyner içerisinde çalışır ve kendi veritabanı ile haberleşir.
-**🎯 Amaç:**
+**Açıklama:** Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasyonu ilkesini korumak amacıyla Docker altyapısı kullanılarak geliştirilmiştir. Her mikroservis bağımsız bir konteyner içerisinde çalışır ve kendi veritabanı ile haberleşir.
+
+### Amaç
 -Servisler arası bağımlılığı minimuma indirmek
 -Ortam bağımsız (environment-agnostic) kurulum sağlamak
 -Hızlı geliştirme ve dağıtım (deployment) süreci oluşturmak
@@ -111,9 +112,10 @@ Bu proje, mikroservis mimarisinin temel prensiplerinden biri olan servis izolasy
 ---
 
 ## Service – Port Configuration
-Aşşağıdaki tabloda her mikroservisin dış dünyaya açıldığı port numaraları belirtilmiştir.Ocelot (API Gateway) tüm istemci (client) isteklerini 5000 portu üzerinden karşılar ve ilgili mikroservise yönlendirir.
+**Açıklama:** Aşşağıdaki tabloda her mikroservisin dış dünyaya açıldığı port numaraları belirtilmiştir.Ocelot (API Gateway) tüm istemci (client) isteklerini 5000 portu üzerinden karşılar ve ilgili mikroservise yönlendirir.
 Diğer servisler (Identity, Catalog, Order, Basket vb.) kendi özel portlarında izole şekilde çalışır.UI uygulaması 7144 portu üzerinden erişilebilir durumdadır.
-**🎯 Bu yapı sayesinde:**
+
+### Bu yapı sayesinde:
 -Servisler bağımsız olarak çalıştırılabilir.
 -Port çakışmaları engellenir.
 -Gateway üzerinden merkezi yönlendirme sağlanır.
@@ -121,7 +123,7 @@ Diğer servisler (Identity, Catalog, Order, Basket vb.) kendi özel portlarında
 
 <img width="217" height="252" alt="image" src="https://github.com/user-attachments/assets/18ad426e-ca62-49e0-914e-6afccff519fe" />
 
-
+--
 
 
 ## 🔐 Kimlik Doğrulama — Identity Server
