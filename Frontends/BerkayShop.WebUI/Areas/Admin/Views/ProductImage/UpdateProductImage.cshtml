@@ -1,0 +1,335 @@
+﻿@model UpdateProductImageDto
+@{
+    ViewData["Title"] = "Ürün Görsellerini Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<div class="upimg-wrapper">
+
+    <!-- Form -->
+    <form method="post">
+        <input type="hidden" asp-for="ProductImageId" />
+
+        <!-- Image Grid -->
+        <div class="upimg-grid">
+
+            <!-- Görsel 1 -->
+            <div class="upimg-card" data-index="1">
+                <div class="upimg-card-header">
+                    <span class="upimg-badge badge-blue">01</span>
+                    <span class="upimg-label">Ana Görsel</span>
+                </div>
+                <div class="upimg-preview-box">
+                    <img src="@Model.Image1" class="upimg-preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                    <div class="upimg-placeholder">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <span>Görsel yok</span>
+                    </div>
+                </div>
+                <input type="text" class="upimg-input" asp-for="Image1" placeholder="https://..." />
+            </div>
+
+            <!-- Görsel 2 -->
+            <div class="upimg-card" data-index="2">
+                <div class="upimg-card-header">
+                    <span class="upimg-badge badge-emerald">02</span>
+                    <span class="upimg-label">2. Görsel</span>
+                </div>
+                <div class="upimg-preview-box">
+                    <img src="@Model.Image2" class="upimg-preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                    <div class="upimg-placeholder">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <span>Görsel yok</span>
+                    </div>
+                </div>
+                <input type="text" class="upimg-input" asp-for="Image2" placeholder="https://..." />
+            </div>
+
+            <!-- Görsel 3 -->
+            <div class="upimg-card" data-index="3">
+                <div class="upimg-card-header">
+                    <span class="upimg-badge badge-amber">03</span>
+                    <span class="upimg-label">3. Görsel</span>
+                </div>
+                <div class="upimg-preview-box">
+                    <img src="@Model.Image3" class="upimg-preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                    <div class="upimg-placeholder">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <span>Görsel yok</span>
+                    </div>
+                </div>
+                <input type="text" class="upimg-input" asp-for="Image3" placeholder="https://..." />
+            </div>
+
+            <!-- Görsel 4 -->
+            <div class="upimg-card" data-index="4">
+                <div class="upimg-card-header">
+                    <span class="upimg-badge badge-rose">04</span>
+                    <span class="upimg-label">4. Görsel</span>
+                </div>
+                <div class="upimg-preview-box">
+                    <img src="@Model.Image4" class="upimg-preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                    <div class="upimg-placeholder">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <span>Görsel yok</span>
+                    </div>
+                </div>
+                <input type="text" class="upimg-input" asp-for="Image4" placeholder="https://..." />
+            </div>
+
+        </div>
+
+        <!-- Product ID -->
+        <div class="upimg-pid-section">
+            <div class="upimg-pid-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M7 9V7a5 5 0 0 1 10 0v2"/></svg>
+                Ürün ID
+            </div>
+            <input type="text" class="upimg-pid-input" asp-for="ProductId" readonly />
+        </div>
+
+        <!-- Submit -->
+        <div class="upimg-footer">
+            <button type="submit" class="upimg-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Görselleri Kaydet
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<style>
+    :root {
+        --upimg-bg: #f8f9fb;
+        --upimg-card-bg: #ffffff;
+        --upimg-border: #eaecf0;
+        --upimg-text: #101828;
+        --upimg-muted: #667085;
+        --upimg-radius: 14px;
+        --upimg-shadow: 0 1px 3px rgba(16,24,40,.06), 0 1px 2px rgba(16,24,40,.04);
+        --upimg-shadow-md: 0 4px 16px rgba(16,24,40,.08), 0 1px 4px rgba(16,24,40,.04);
+    }
+
+    .upimg-wrapper {
+        font-family: 'DM Sans', sans-serif;
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem 3rem;
+    }
+
+    /* Header */
+    .upimg-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--upimg-border);
+    }
+
+    .upimg-header-icon {
+        width: 46px;
+        height: 46px;
+        background: #101828;
+        color: #fff;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .upimg-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--upimg-text);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .upimg-subtitle {
+        font-size: 0.85rem;
+        color: var(--upimg-muted);
+        margin: 0;
+        margin-top: 2px;
+    }
+
+    /* Grid */
+    .upimg-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    /* Card */
+    .upimg-card {
+        background: var(--upimg-card-bg);
+        border: 1px solid var(--upimg-border);
+        border-radius: var(--upimg-radius);
+        padding: 1.25rem;
+        box-shadow: var(--upimg-shadow);
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .upimg-card:hover {
+        box-shadow: var(--upimg-shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .upimg-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .upimg-badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        padding: 3px 9px;
+        border-radius: 20px;
+    }
+
+    .badge-blue   { background: #eff6ff; color: #1d4ed8; }
+    .badge-emerald{ background: #f0fdf4; color: #15803d; }
+    .badge-amber  { background: #fffbeb; color: #b45309; }
+    .badge-rose   { background: #fff1f2; color: #be123c; }
+
+    .upimg-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--upimg-text);
+    }
+
+    /* Preview */
+    .upimg-preview-box {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f2f4f7;
+        margin-bottom: 1rem;
+        aspect-ratio: 16/9;
+    }
+
+    .upimg-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .upimg-card:hover .upimg-preview {
+        transform: scale(1.03);
+    }
+
+    .upimg-placeholder {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        height: 100%;
+        color: #98a2b3;
+        font-size: 0.8rem;
+    }
+
+    /* Input */
+    .upimg-input {
+        width: 100%;
+        border: 1px solid var(--upimg-border);
+        border-radius: 8px;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.85rem;
+        font-family: 'DM Sans', sans-serif;
+        color: var(--upimg-text);
+        background: #fcfcfd;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        box-sizing: border-box;
+    }
+
+    .upimg-input:focus {
+        border-color: #101828;
+        box-shadow: 0 0 0 3px rgba(16,24,40,.07);
+        background: #fff;
+    }
+
+    .upimg-input::placeholder { color: #b0b7c3; }
+
+    /* Product ID */
+    .upimg-pid-section {
+        background: var(--upimg-card-bg);
+        border: 1px solid var(--upimg-border);
+        border-radius: var(--upimg-radius);
+        padding: 1rem 1.25rem;
+        box-shadow: var(--upimg-shadow);
+        margin-bottom: 1.75rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .upimg-pid-label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--upimg-muted);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .upimg-pid-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 0.9rem;
+        font-family: 'DM Mono', monospace;
+        color: var(--upimg-text);
+        cursor: default;
+    }
+
+    /* Footer */
+    .upimg-footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .upimg-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #101828;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.7rem 1.6rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        font-family: 'DM Sans', sans-serif;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        box-shadow: 0 1px 2px rgba(16,24,40,.1);
+    }
+
+    .upimg-btn:hover {
+        background: #1d2939;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16,24,40,.18);
+    }
+
+    .upimg-btn:active {
+        transform: translateY(0);
+    }
+
+    @@media (max-width: 640px) {
+        .upimg-grid { grid-template-columns: 1fr; }
+    }
+</style>

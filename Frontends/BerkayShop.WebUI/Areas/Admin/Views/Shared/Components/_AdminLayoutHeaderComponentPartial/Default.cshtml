@@ -1,0 +1,159 @@
+﻿<style>
+    .logo {
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-mini img {
+        width: 63px;
+        height: 50px;
+        display: block;
+    }
+
+    .logo-lg img {
+        width: 230px;
+        height: 50px;
+        display: block;
+    }
+
+    /* Badge konumlandırma düzeltmesi */
+    .navbar-nav > li > a {
+        position: relative;
+    }
+
+        .navbar-nav > li > a .badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #dd4b39;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 11px;
+            min-width: 18px;
+            text-align: center;
+        }
+</style>
+
+<header class="main-header dark-bg">
+    <a href="../index.html" class="logo dark-bg">
+        <span class="logo-mini">
+            <img src="~/images/logos/berkayshop.png" alt="BerkayShop">
+        </span>
+        <span class="logo-lg">
+            <img src="~/images/logos/berkayshop.png" alt="BerkayShop">
+        </span>
+    </a>
+
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="pull-left search-box">
+            <form action="#" method="get" class="search-form">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Aranacak Kelime...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <div class="navbar-custom-menu">
+                <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var connection = new signalR.HubConnectionBuilder()
+                            .withUrl("https://localhost:7212/SignalRHub")
+                                .build();
+
+                        $("#connstatus").text(connection.state);
+
+                        connection.start()
+                            .then(function() {
+                                    console.log("SignalR baglandi");
+                                $("#connstatus").text(connection.state);
+
+                                var receiverId = "@ViewBag.UserId";
+                                return   setInterval(() => {
+                                         connection.invoke("SendStatistics",receiverId);
+                                        }, 1000)
+                                            })
+                            .catch(function(err) {
+                                console.error("Hata:", err);
+                            });
+
+                            connection.on("ReceiverTotalCommentCount", (commentCount) => {
+                            console.log("Yorum sayisi geldi:", commentCount);
+                            $(".connCommentCount").text(commentCount);
+                        });
+
+                        connection.on("ReceiverTotalMessageCount", (messagecount) => {
+                            console.log("Mesaj sayisi geldi:", messagecount);
+                          $(".messageCount").text(messagecount);
+                        });
+                     
+                    });
+                </script>
+            <ul class="nav navbar-nav">
+                <!-- Mesajlar -->
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-envelope"></i>
+                        <span class="badge messageCount"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">
+                            <strong class="messageCount"></strong>
+                            Yeni Mesajınız var 
+                        </li>
+                        <li class="footer"><a href="#">Mesajlara Git</a></li>
+                    </ul>
+                </li>
+
+                <!-- Bildirimler -->
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-megaphone"></i>
+                        <span class="badge connCommentCount"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">Bildirimler(<strong class="connCommentCount"></strong> Yeni Bildirim) </li>
+                        <li class="footer"><a href="#">Bildirimlere Git</a></li>
+                    </ul>
+                </li>
+
+                <!-- Kullanıcı Menüsü -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/images/logos/manlogo.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Berkay Genceroğlu</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <div class="pull-left user-img">
+                                <img src="~/images/logos/manlogo.jpg" class="img-responsive" alt="User">
+                            </div>
+                            <p class="text-left">Florence Douglas <small>user123@gmail.com</small></p>
+                            <div class="view-link text-left"><a href="#">Profili Görüntüle</a></div>
+                        </li>
+                        <li><a href="#"><i class="icon-profile-male"></i>Profilim</a></li>
+                        <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
+                        <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><i class="icon-gears"></i> Hesap Ayarları</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> Çıkış</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

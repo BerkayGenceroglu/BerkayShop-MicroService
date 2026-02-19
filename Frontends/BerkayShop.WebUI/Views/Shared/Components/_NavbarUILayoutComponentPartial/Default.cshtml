@@ -1,0 +1,135 @@
+﻿@model List<ResultCategoryDto>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<div class="container-fluid bg-dark mb-30">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.2/css/flag-icons.min.css" />
+
+    <style>
+        .lang-switcher {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+            .lang-switcher .lang-item a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                border-radius: 6px;
+                border: 2px solid transparent;
+                text-decoration: none;
+                transition: all 0.2s ease;
+            }
+
+                .lang-switcher .lang-item a:hover {
+                    border-color: rgba(255, 193, 7, 0.7);
+                    background-color: rgba(255, 255, 255, 0.1);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+                }
+
+                .lang-switcher .lang-item a .fi {
+                    font-size: 1.25rem;
+                    border-radius: 2px;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+                    display: block;
+                    transition: transform 0.2s ease;
+                }
+
+                .lang-switcher .lang-item a:hover .fi {
+                    transform: scale(1.12);
+                }
+
+        .lang-divider {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 2px;
+        }
+    </style>
+
+    <div class="row px-xl-5">
+        <div class="col-lg-3 d-none d-lg-flex flex-column" style="position: relative;">
+            <ul class="lang-switcher">
+                <li class="lang-item">
+                    <a href="?culture=tr" title="Türkçe"><span class="fi fi-tr"></span></a>
+                </li>
+                <li class="lang-divider" role="separator"></li>
+                <li class="lang-item">
+                    <a href="?culture=fr" title="Français"><span class="fi fi-fr"></span></a>
+                </li>
+                <li class="lang-divider" role="separator"></li>
+                <li class="lang-item">
+                    <a href="?culture=it" title="Italiano"><span class="fi fi-it"></span></a>
+                </li>
+                <li class="lang-divider" role="separator"></li>
+                <li class="lang-item">
+                    <a href="?culture=en" title="English"><span class="fi fi-gb"></span></a>
+                </li>
+                <li class="lang-divider" role="separator"></li>
+                <li class="lang-item">
+                    <a href="?culture=de" title="Deutsch"><span class="fi fi-de"></span></a>
+                </li>
+            </ul>
+            <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>@localizer["Kategoriler"]</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: 100%; z-index: 999; top: 113px;">
+                <div class="navbar-nav w-100">
+                    @foreach (var item in Model)
+                    {
+                        <a href="/ProductList/AllProductList?categoryId=@item.CategoryId" class="nav-item nav-link">@localizer[item.CategoryName]</a>
+                    }
+                </div>
+            </nav>
+        </div>
+
+        <div class="col-lg-9 d-flex flex-column justify-content-end">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <a href="" class="text-decoration-none d-block d-lg-none">
+                    <span class="h1 text-uppercase text-dark bg-light px-2">Berkay</span>
+                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="/Default/DefaultPage" class="nav-item nav-link">@localizer["Anasayfa"]</a>
+                        <a href="shop.html" class="nav-item nav-link">@localizer["Ürünler"]</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                @localizer["Sayfalar"] <i class="fa fa-angle-down mt-1"></i>
+                            </a>
+                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                <a href="/ShoppingCart/BasketPage" class="dropdown-item">@localizer["Sepetim"]</a>
+                                <a href="/Payment/PaymentPage" class="dropdown-item">@localizer["Ödeme"]</a>
+                                <a href="/Register/RegisterPage" class="dropdown-item">@localizer["Kayıt Ol"]</a>
+                                <a href="/Login/LoginPage" class="dropdown-item">@localizer["Giriş Yap"]</a>
+                            </div>
+                        </div>
+                        <a href="/Contact/ContactPage" class="nav-item nav-link">@localizer["İletişim"]</a>
+                    </div>
+                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                        <a href="" class="btn px-0">
+                            <i class="fas fa-heart text-primary"></i>
+                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                        </a>
+                        <a href="" class="btn px-0 ml-3">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

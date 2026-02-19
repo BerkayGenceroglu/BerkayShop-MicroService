@@ -1,0 +1,177 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Hakkımızda Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Yatay taşmayı kesin olarak engeller */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfd;
+        overflow-x: hidden;
+    }
+
+    .main-container {
+        padding: 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+        .header-section h2 {
+            font-weight: 700;
+            color: #101828;
+            margin: 0;
+        }
+
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 12px;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        width: 100%;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        /* table-layout: fixed; kullanmıyoruz ki metin aşağı doğru rahatça uzasın */
+    }
+
+        .modern-table th {
+            background-color: #f9fafb;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #667085;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .modern-table td {
+            padding: 15px;
+            vertical-align: top; /* Metin uzunsa butonlar yukarıda hizalı kalır */
+            color: #475467;
+            font-size: 13px;
+            border-bottom: 1px solid #f2f4f7;
+            word-break: break-word; /* Uzun kelimeleri böler */
+            white-space: normal; /* Metnin alt satıra geçmesini sağlar */
+        }
+
+    /* Açıklama alanı için özel stil */
+    .about-full-desc {
+        line-height: 1.6;
+        color: #475467;
+        display: block;
+        min-width: 200px; /* Çok daralmasını engeller */
+    }
+
+    .contact-info {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+        .contact-info i {
+            color: #98a2b3;
+            margin-right: 5px;
+        }
+
+    .btn-action {
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.2s;
+    }
+
+    .btn-edit {
+        background: #eff4ff;
+        color: #444ce7;
+    }
+
+    .btn-delete {
+        background: #fef3f2;
+        color: #b42318;
+    }
+
+    .btn-add-new {
+        background: #7f56d9;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+    }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Hakkımızda Yönetimi</h2>
+        </div>
+        <a href="/Admin/About/AddAbout" class="btn btn-add-new">
+            <i class="fa fa-plus"></i> Yeni Ekle
+        </a>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th style="width: 70px">#</th>
+                    <th>Açıklama</th>
+                    <th style="width: 200px">Adres</th>
+                    <th style="width: 220px">İletişim</th>
+                    <th style="width: 200px; text-align: center;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td style="color: #98a2b3; font-weight: 500;">#@count.ToString("D2")</td>
+                        <td>
+                            <div class="about-full-desc">
+                                @item.Description
+                            </div>
+                        </td>
+                        <td>
+                            <span class="contact-info"><i class="fa fa-map-marker"></i> @item.Address</span>
+                        </td>
+                        <td>
+                            <span class="contact-info"><i class="fa fa-envelope-o"></i> @item.Email</span>
+                            <span class="contact-info"><i class="fa fa-phone"></i> @item.Phone</span>
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="display: flex; justify-content: center; gap: 5px;">
+                                <a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn-action btn-edit">
+                                    <i class="fa fa-pencil"></i> Düzenle
+                                </a>
+                                <a href="/Admin/About/RemoveAbout/@item.AboutId" class="btn-action btn-delete" onclick="return confirm('Silinsin mi?')">
+                                    <i class="fa fa-trash-can"></i> Sil
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

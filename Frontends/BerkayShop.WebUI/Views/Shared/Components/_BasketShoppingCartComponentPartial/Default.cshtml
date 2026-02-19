@@ -1,0 +1,69 @@
+﻿@model BasketTotalDto
+@{
+    var List = Model.BasketItems;
+}
+
+<div class="col-lg-8 table-responsive mb-5">
+    <table class="table table-light table-borderless table-hover text-center mb-0 shadow-sm" style="border-radius: 10px; overflow: hidden;">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-left pl-4">Ürün</th>
+                <th>Birim Fiyat</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th>Kaldır</th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            @foreach (var item in List)
+            {
+                var ItemtotalPrice = item.Price * item.Quantity;
+                <tr class="border-bottom">
+                    <td class="align-middle text-left pl-4">
+                        <div class="d-flex align-items-center">
+                            <div class="img-container mr-3" style="width: 60px; height: 60px; overflow: hidden; border-radius: 8px; border: 1px solid #eee;">
+                                <img src="@item.ProductImageUrl" alt="@item.ProductName" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;">
+                            </div>
+                            <span class="font-weight-semi-bold text-dark">@item.ProductName</span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle font-weight-medium">
+                        @item.Price.ToString("N0") ₺
+                    </td>
+
+                    <td class="align-middle">
+                        <div class="input-group quantity mx-auto" style="width: 110px; border-radius: 20px; overflow: hidden; border: 1px solid #ddd;">
+                            <div class="input-group-btn">
+                                <a href="#" class="btn btn-sm btn-primary btn-minus border-0 py-2">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-white border-0 text-center font-weight-bold"
+                                   value="@item.Quantity" readonly>
+                            <div class="input-group-btn">
+                                <a href="#" class="btn btn-sm btn-primary btn-plus border-0 py-2">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <span class="font-weight-bold text-primary" style="font-size: 1.1rem;">
+                            @ItemtotalPrice.ToString("N0") ₺
+                        </span>
+                    </td>
+
+                    <td class="align-middle">
+                        <a href="/ShoppingCart/RemoveBasketItem?productId=@item.ProductId"
+                           class="btn btn-sm btn-outline-danger border-0"
+                           style="transition: 0.3s; border-radius: 50%;">
+                            <i class="fa fa-trash-alt" style="font-size: 1.2rem;"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

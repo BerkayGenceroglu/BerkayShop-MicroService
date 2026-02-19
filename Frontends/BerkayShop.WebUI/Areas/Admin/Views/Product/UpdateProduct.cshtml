@@ -1,0 +1,40 @@
+﻿@model UpdateProductDto
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div style="display:flex; justify-content:center;">
+        <div style="width:600px;">
+            <div class="chart-box">
+                <h4 class="text-center">Ürün Güncelleme Formu</h4>
+                <p>Ürün Güncelleme ile ilgili işlemlerinizi aşağıdaki Panel üzerinden gerçekleştirebilirsiniz.</p>
+                <br />
+                <form method="post">
+                    <input type="hidden" asp-for="ProductId" />
+                    <label class="form-label" style="font-weight: 500;">Ürün Adı</label>
+                    <input type="text" class="form-control" asp-for="ProductName" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Ürün Fiyatı</label>
+                    <input type="text" class="form-control" asp-for="ProductPrice" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Ürün Görseli</label>
+                    <input type="text" class="form-control" asp-for="ProductImageUrl" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Ürün Kategori</label>
+                    <select asp-for="CategoryId"
+                            asp-items="ViewBag.Values"
+                            class="form-control" style="height:50px" required>
+                    </select>
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Ürün Açıklama</label>
+                    <textarea type="text" rows="5" class="form-control" asp-for="ProductDescription"></textarea>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Ürün Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

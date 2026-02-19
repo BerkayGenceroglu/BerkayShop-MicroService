@@ -1,0 +1,132 @@
+﻿@model List<ResultUserDto>
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Scrollbar oluşumunu ve yatay taşmayı engeller */
+    body { font-family: 'Inter', sans-serif; background-color: #fcfcfd; overflow-x: hidden; }
+
+    .main-container { padding: 30px; width: 100%; box-sizing: border-box; }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .header-section h2 { font-weight: 700; color: #101828; margin: 0; letter-spacing: -0.5px; }
+
+    /* Modern Tablo Kartı */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 12px;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Sütunları sabit tutar, taşmayı önler */
+    }
+
+    .modern-table th {
+        background-color: #f9fafb;
+        padding: 12px 20px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 600;
+        color: #667085;
+        text-transform: uppercase;
+        border-bottom: 1px solid #eaecf0;
+    }
+
+    .modern-table td {
+        padding: 14px 20px;
+        vertical-align: middle;
+        color: #475467;
+        font-size: 14px;
+        border-bottom: 1px solid #f2f4f7;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Kullanıcı Vurguları */
+    .user-name { font-weight: 600; color: #101828; display: block; }
+    .user-handle { color: #667085; font-size: 13px; font-weight: 400; }
+    .user-email { color: #444ce7; font-size: 13px; text-decoration: none; }
+
+    /* Aksiyon Butonları */
+    .btn-action {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.2s;
+        border: none;
+    }
+
+    .btn-detail { background: #fffaeb; color: #b54708; border: 1px solid #fede87; }
+    .btn-detail:hover { background: #fef0c7; color: #93370d; }
+
+    .index-badge { color: #98a2b3; font-weight: 500; }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Kullanıcı Yönetimi</h2>
+            <p style="color: #667085; margin: 5px 0 0 0;">Sisteme kayıtlı kullanıcıları ve iletişim tercihlerini buradan görüntüleyin.</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th style="width: 8%">#</th>
+                    <th style="width: 25%">İsim-Soyisim</th>
+                    <th style="width: 20%">Kullanıcı Adı</th>
+                    <th style="width: 25%">E-Posta Adresi</th>
+                    <th style="width: 22%;text-align:center" >Detaylar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td class="index-badge">#@count.ToString("D2")</td>
+                        <td>
+                            <span class="user-name">@item.name @item.surname</span>
+                        </td>
+                        <td>
+                            <span class="user-handle">@@@item.userName</span>
+                        </td>
+                        <td>
+                            <span class="user-email">@item.email</span>
+                        </td>
+                        <td class="text-center">
+                            <a href="/Admin/User/GetUserAddress?userId=@item.id" class="btn-action btn-detail">
+                                <i class="fa fa-map-marker"></i> İletişim Bilgileri
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

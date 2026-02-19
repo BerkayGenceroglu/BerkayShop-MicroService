@@ -1,0 +1,173 @@
+{
+  "Routes": [
+    // Catalog MikroService
+    {
+      "UpstreamPathTemplate": "/services/catalog/{everything}", //Katolog servisine gelen istekler
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "UpstreamScheme": "http",
+
+      "DownstreamPathTemplate": "/api/{everything}", //Katolog servisinin Yönlendirme adresi
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7100
+        }
+      ],
+
+      "AuthenticationOptions": {
+        "AllowedScopes": [ "CatalogFullPermission" ],
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+      }
+    },
+    // Discount MikroService
+    {
+      "UpstreamPathTemplate": "/services/discount/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "UpstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7101
+        }
+      ],
+      "AuthenticationOptions": {
+        "AllowedScopes": [ "DiscountFullPermission" ],
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+      }
+    },
+      // Order MikroService
+      {
+        "UpstreamPathTemplate": "/services/Order/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7102
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "OrderFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+      // Cargo MikroService
+      {
+        "UpstreamPathTemplate": "/services/cargo/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7103
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "CargoFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+      // Comment MikroService
+      {
+        "UpstreamPathTemplate": "/services/comment/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7107
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "CommentFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+      // Basket MikroService
+      {
+        "UpstreamPathTemplate": "/services/basket/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7104
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "BasketFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+      // Images MikroService
+      {
+        "UpstreamPathTemplate": "/services/images/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7105
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "ImageFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+
+      // Payment MikroService
+      {
+        "UpstreamPathTemplate": "/services/payment/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7106
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "PaymentFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      },
+      // Message MikroService
+      {
+        "UpstreamPathTemplate": "/services/message/{everything}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+        "UpstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7108
+          }
+        ],
+        "AuthenticationOptions": {
+          "AllowedScopes": [ "MessageFullPermission" ],
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+        }
+      }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

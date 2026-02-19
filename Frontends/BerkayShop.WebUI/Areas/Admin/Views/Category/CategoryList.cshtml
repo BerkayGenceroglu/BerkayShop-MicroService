@@ -1,0 +1,201 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfd;
+    }
+
+    .main-container {
+        padding: 40px;
+    }
+
+    /* Üst Başlık Alanı */
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+        .header-section h2 {
+            font-weight: 700;
+            color: #101828;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+    /* Modern Cam (Glass) Efektli Tablo Kartı */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+    }
+
+        .modern-table thead {
+            background-color: #f9fafb;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .modern-table th {
+            padding: 12px 24px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #667085;
+            text-transform: uppercase;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.2s ease;
+            border-bottom: 1px solid #f2f4f7;
+        }
+
+            .modern-table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+            .modern-table tbody tr:hover {
+                background-color: #f9fafb;
+            }
+
+        .modern-table td {
+            padding: 16px 24px;
+            vertical-align: middle;
+            color: #475467;
+            font-size: 14px;
+        }
+
+    /* Kategori Adı Vurgusu */
+    .category-name {
+        font-weight: 600;
+        color: #101828;
+    }
+
+    /* Durum ve Link Butonları */
+    .btn-action {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s;
+    }
+
+    .btn-view {
+        background: #f2f4f7;
+        color: #344054;
+    }
+
+        .btn-view:hover {
+            background: #eaecf0;
+        }
+
+    .btn-edit {
+        background: #eff4ff;
+        color: #444ce7;
+    }
+
+        .btn-edit:hover {
+            background: #d1e0ff;
+        }
+
+    .btn-delete {
+        background: #fef3f2;
+        color: #b42318;
+    }
+
+        .btn-delete:hover {
+            background: #fee4e2;
+        }
+
+    .btn-add-new {
+        background: #7f56d9;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 1px solid #7f56d9;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    }
+
+        .btn-add-new:hover {
+            background: #6941c6;
+            color: white;
+        }
+
+    /* Badge (Sıra No) */
+    .index-badge {
+        color: #98a2b3;
+        font-weight: 500;
+    }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Kategoriler</h2>
+            <p style="color: #667085; margin: 5px 0 0 0;">Sistemdeki tüm ürün kategorilerini buradan yönetebilirsiniz.</p>
+        </div>
+        <a href="/Admin/Category/AddCategory" class="btn btn-add-new">
+            <i class="fa fa-plus"></i> Kategori Ekle
+        </a>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kategori Bilgisi</th>
+                    <th>Envanter</th>
+                    <th style="text-align: center;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td class="index-badge">#@count.ToString("D2")</td>
+                        <td>
+                            <span class="category-name">@item.CategoryName</span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-action btn-view">
+                                <i class="fa fa-external-link"></i> Ürünleri Listele
+                            </a>
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="display: flex; justify-content:center; gap: 10px;">
+                                <a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn-action btn-edit">
+                                    <i class="fa fa-pencil"></i> Düzenle
+                                </a>
+                                <a href="/Admin/Category/RemoveCategory/@item.CategoryId" class="btn-action btn-delete">
+                                    <i class="fa fa-trash-o"></i> Sil
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model BasketTotalDto
+@{
+    var ToplamUcret = ViewBag.LastPriceAfterDiscount + 50; // Kargo ücreti ekleniyor
+}
+
+<div class="bg-white p-4 mb-5 shadow-sm" style="border-radius: 12px; border: 1px solid #f0f0f0;">
+    <div class="mb-2">
+        <div class="row mb-3 pb-2 border-bottom">
+            <div class="col-7">
+                <span class="text-muted small text-uppercase fw-bold">Ürün</span>
+            </div>
+            <div class="col-2 text-center">
+                <span class="text-muted small text-uppercase fw-bold">Adet</span>
+            </div>
+            <div class="col-3 text-end">
+                <span class="text-muted small text-uppercase fw-bold">Fiyat</span>
+            </div>
+        </div>
+
+        <div class="product-scroll-area" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+            @foreach (var item in Model.BasketItems)
+            {
+                <div class="row mb-3 align-items-center">
+                    <div class="col-7">
+                        <p class="mb-0 fw-medium text-dark" style="font-size: 0.95rem; line-height: 1.2;">@item.ProductName</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <span class="badge badge-secondary px-2 py-1" style="background-color: #f8f9fa; color: #666; border: 1px solid #FFD400;">
+                            @item.Quantity
+                        </span>
+                    </div>
+                    <div class="col-3 text-end">
+                        <p class="mb-0 fw-semibold text-dark">@((item.Price * item.Quantity).ToString("N0")) ₺</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="bg-light p-3 rounded-lg" style="background-color: #fcfcfc !important; border: 1px solid #f1f1f1;">
+        <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Ara Toplam + KDV</span>
+            <span class="fw-semibold text-dark">@ViewBag.LastPriceAfterDiscount.ToString("N0") ₺</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Kargo Ücreti</span>
+            <span class="text-success fw-medium">+ 50,00 ₺</span>
+        </div>
+        
+        <div class="border-top pt-3 mt-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold" style="color: #2c3e50;">Genel Toplam</h5>
+                <div class="text-end">
+                    <h4 class="mb-0 fw-bold" style="color: #28a745; letter-spacing: -1px;">
+                        @ToplamUcret.ToString("N0") ₺
+                    </h4>
+                    <small class="text-muted" style="font-size: 0.75rem;">KDV Dahil Net Fiyat</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/Payment/PaymentPage" class="btn btn-block btn-primary font-weight-bold mt-4 py-3 shadow-sm transition-all"
+       style="border-radius: 8px; text-transform: uppercase; letter-spacing: 1px;">
+        <i class="fa fa-lock mr-2"></i> Siparişi Tamamla
+    </a>
+</div>

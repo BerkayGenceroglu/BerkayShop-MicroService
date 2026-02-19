@@ -1,0 +1,27 @@
+﻿@model CreateCategoryDto
+
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div style="display:flex; justify-content:center;">
+        <div style="width:600px;">
+            <div class="chart-box">
+                <h4 class="text-center">Kategori Ekleme Formu</h4>
+                <p>Kategori ile ilgili işlemlerinizi aşağıdaki Panel üzerinden gerçekleştirebilirsiniz.</p>
+                <br />
+                <form method="post">
+                    <label class="form-label" style="font-weight: 500;">Kategori Adı</label>
+                    <input type="text" class="form-control" asp-for="CategoryName" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Kategori Görsel</label>
+                    <input type="text" class="form-control" asp-for="ImageUrl" />
+                    <br />
+                    <button type="submit" class="btn btn-primary">Kategori Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

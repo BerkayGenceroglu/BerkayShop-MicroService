@@ -1,0 +1,190 @@
+﻿@model List<ResultCommentDto>
+@{
+    ViewData["Title"] = "Yorum Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body { font-family: 'Inter', sans-serif; background-color: #fcfcfd; }
+
+    .main-container { padding: 40px; }
+
+    /* Üst Başlık Alanı */
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .header-section h2 {
+        font-weight: 700;
+        color: #101828;
+        margin: 0;
+        letter-spacing: -0.5px;
+    }
+
+    /* Tablo Kartı */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+    }
+
+    .modern-table thead {
+        background-color: #f9fafb;
+        border-bottom: 1px solid #eaecf0;
+    }
+
+    .modern-table th {
+        padding: 12px 24px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        color: #667085;
+        text-transform: uppercase;
+    }
+
+    .modern-table tbody tr {
+        transition: background 0.2s ease;
+        border-bottom: 1px solid #f2f4f7;
+    }
+
+    .modern-table tbody tr:hover { background-color: #f9fafb; }
+
+    .modern-table td {
+        padding: 16px 24px;
+        vertical-align: middle;
+        color: #475467;
+        font-size: 14px;
+    }
+
+    /* Kullanıcı ve Yorum Detayı */
+    .user-info { font-weight: 600; color: #101828; }
+    .comment-text {
+        max-width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #667085;
+        font-size: 13px;
+    }
+
+    /* Rating & Badge Stilleri */
+    .rating-badge {
+        background: #fff8eb;
+        color: #b54708;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+    }
+
+    .status-active {
+        background: #ecfdf3;
+        color: #039855;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .date-text { color: #98a2b3; font-size: 12px; }
+
+    /* Aksiyon Butonları */
+    .btn-action {
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s;
+        border: none;
+    }
+
+    .btn-edit { background: #eff4ff; color: #444ce7; }
+    .btn-edit:hover { background: #d1e0ff; }
+
+    .btn-delete { background: #fef3f2; color: #b42318; }
+    .btn-delete:hover { background: #fee4e2; }
+
+    .index-badge { color: #98a2b3; font-weight: 500; }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Kullanıcı Yorumları</h2>
+            <p style="color: #667085; margin: 5px 0 0 0;">Müşteri geri bildirimlerini ve puanlamaları buradan takip edin.</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-responsive">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kullanıcı</th>
+                        <th>Yorum Özeti</th>
+                        <th>Rating</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th style="text-align: right;">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td class="index-badge">#@count.ToString("D2")</td>
+                            <td><span class="user-info">@item.NameSurname</span></td>
+                            <td>
+                                <div class="comment-text" title="@item.CommentDetail">
+                                    @item.CommentDetail
+                                </div>
+                            </td>
+                            <td>
+                                <span class="rating-badge">
+                                    <i class="fa fa-star" style="color: #fdb022;"></i> @item.Rating
+                                </span>
+                            </td>
+                            <td><span class="date-text">@item.CreatedDate.ToShortDateString()</span></td>
+                            <td>
+                                <span class="status-active">@item.Status</span>
+                            </td>
+                            <td style="text-align: right;">
+                                <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                                    <a href="/Admin/Comment/UpdateComment/@item.UserCommentId" class="btn-action btn-edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="/Admin/Comment/RemoveComment/@item.UserCommentId" class="btn-action btn-delete" onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?')">
+                                        <i class="fa fa-trash-can"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

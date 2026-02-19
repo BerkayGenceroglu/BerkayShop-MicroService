@@ -1,0 +1,66 @@
+﻿@model List<ResultProductWithCategoryDto>
+
+<style>
+    /* 1. Görsellerin hepsini aynı boyuta zorla (bozulmadan sığdırır) */
+    .custom-img {
+        height: 250px; /* İstediğin yüksekliğe göre ayarla */
+        object-fit: contain; /* Görseli kesmeden çerçeveye sığdırır (e-ticaret için idealdir) */
+        background-color: #fff; /* Arka planı beyaz yaparak boşlukları kapatır */
+    }
+
+    /* 2. Ürün isimlerinin yüksekliğini sabitle */
+    .product-name {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Maksimum 2 satır göster */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 3rem; /* Satır yüksekliğine göre ayarla (Örn: line-height 1.5 ise 3rem) */
+        margin-bottom: 10px;
+    }
+
+    /* 3. Card'ların aynı hizada kalmasını sağlayan yapı */
+    .product-item {
+        border: 1px solid #eee; /* İsteğe bağlı: sınırları belirginleştirir */
+        transition: all 0.3s;
+    }
+</style>
+@foreach (var item in Model)
+{
+    decimal oldPrice = item.ProductPrice + ((item.ProductPrice / 100) * 15);
+    <div class="col-lg-4 col-md-6 col-sm-6 pb-4">
+        @* Alt boşluk için pb-4 daha iyidir *@
+        <div class="product-item bg-light mb-4 h-100 d-flex flex-column">
+            <div class="product-img position-relative overflow-hidden">
+                @* Görsellerin boyutunu sabitlemek için 'custom-img' sınıfı ekledik *@
+                <img class="img-fluid w-100 custom-img" src="@item.ProductImageUrl" alt="@item.ProductName">
+                <div class="product-action">
+                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+            <div class="text-center py-4 px-3 d-flex flex-column flex-grow-1">
+                @* İsim alanını sabitlemek için 'product-name' sınıfı ekledik *@
+                <a class="h6 text-decoration-none text-truncate-custom product-name" href="/ProductList/ProductDetail?productId=@item.ProductId">
+                    @item.ProductName
+                </a>
+                <div class="mt-auto">
+                    @* Fiyat ve yıldızları en alta iter *@
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <h5>@item.ProductPrice TL</h5>
+                        <h6 class="text-muted ml-2"><del>@oldPrice TL</del></h6>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center mb-1">
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small>(99)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

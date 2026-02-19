@@ -1,0 +1,30 @@
+﻿@model CreateSpecialOfferDto
+@{
+    ViewData["Title"] = "AddSpecialOffer";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div style="display:flex; justify-content:center;">
+        <div style="width:600px;">
+            <div class="chart-box">
+                <h4 class="text-center">Özel İndirim Ekleme Formu</h4>
+                <p>Özel İndirimler ile ilgili işlemlerinizi aşağıdaki Panel üzerinden gerçekleştirebilirsiniz.</p>
+                <br />
+                <form method="post">
+                    <label class="form-label" style="font-weight: 500;">Başlık</label>
+                    <input type="text" class="form-control" asp-for="Title" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Alt Başlık</label>
+                    <input type="text" class="form-control" asp-for="SubTitle" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Görsel URL</label>
+                    <input type="text" class="form-control" asp-for="ImageUrl" />
+                    <br />
+                    <button type="submit" class="btn btn-primary">Özel İndirim Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

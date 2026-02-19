@@ -1,0 +1,41 @@
+﻿var client = _httpClientFactory.CreateClient();
+			var stringContent = new StringContent(System.Text.Json.JsonSerializer.Serialize(dto), System.Text.Encoding.UTF8, "application/json");
+			var responseMessage = await client.PostAsync("http://localhost:5001/api/Logins", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+				var jsondata = await responseMessage.Content.ReadAsStringAsync();
+				var tokenModel = JsonSerializer.Deserialize<JwtResponseModel>(jsondata, new JsonSerializerOptions
+				{ PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+				//Şunu söylüyor:
+				//“JSON’daki token → C#’taki Token demektir”
+				//“JSON’daki expireDate → C#’taki ExpireDate demektir”
+				//Yani isim eşleştirme kuralı tanımlıyorsun
+
+				if (tokenModel != null)
+                {
+					JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();          
+					var token = handler.ReadJwtToken(tokenModel.Token);
+					var claims = token.Claims.ToList();
+
+                    if (tokenModel.Token != null)
+                    {
+						claims.Add(new Claim("BerkayShopToken", tokenModel.Token));
+						var claimsIdentity = new ClaimsIdentity(claims,JwtBearerDefaults.AuthenticationScheme);
+						var autProps = new AuthenticationProperties
+						{
+							ExpiresUtc = tokenModel.ExpireDate,
+							IsPersistent = true
+						};
+						//👉 “Bu kullanıcıyı, verdiğim bilgilerle sisteme giriş yapmış olarak kaydet.”
+						 //Sunucunun istemciye(tarayıcıya) "Bu kullanıcı başarıyla doğrulandı, onu tanı" talimatını vermesini sağlar.
+						await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), autProps);
+						//“Bu kullanıcı JWT(Bearer Token) ile giriş yaptı”,Hangi kimlik doğrulama yöntemini kullandığımızı belirtir
+						//👉 “Bu kimliği al, sisteme kullanıcı olarak kaydet” demektir.
+						//Yani oturum ayarları.
+						//Bu kullanıcıyı, bu kimlikle ve bu kurallarla login et
+						var _id = _loginService.GetUserId;
+						return RedirectToAction("DefaultPage", "Default");
+					}
+                }
+            }

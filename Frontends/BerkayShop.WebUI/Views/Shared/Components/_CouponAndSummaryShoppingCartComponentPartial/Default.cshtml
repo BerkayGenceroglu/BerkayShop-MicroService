@@ -1,0 +1,68 @@
+﻿<div class="col-lg-4">
+    <h5 class="section-title position-relative text-uppercase mb-3">
+        <span class="bg-secondary pr-3">İndirim Kuponu</span>
+    </h5>
+    <form class="mb-30" asp-controller="Discount" asp-action="ConfirmDiscountCoupon" method="post">
+        <div class="input-group shadow-sm">
+            <input value="@ViewBag.CouponCode"
+                   type="text"
+                   name="code"
+                   class="form-control border-0 p-4"
+                   placeholder="Kupon Kodunuz"
+                   style="color: #8e44ad; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+            <div class="input-group-append">
+                <button class="btn btn-primary px-4">Uygula</button>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.CouponCode))
+        {
+            <small class="text-success mt-2 d-block ml-1">
+                <i class="fa fa-check-circle"></i> <strong>@ViewBag.CouponCode</strong> kuponu başarıyla uygulandı.
+            </small>
+        }
+    </form>
+
+    <h5 class="section-title position-relative text-uppercase mb-3">
+        <span class="bg-secondary pr-3">Sepet Özeti</span>
+    </h5>
+    <div class="bg-light p-30 mb-5 shadow-sm" style="border-radius: 8px;">
+        <div class="border-bottom pb-2">
+            <div class="d-flex justify-content-between mb-3">
+                <h6 class="text-muted">Ara Toplam:</h6>
+                <h6>@ViewBag.TotalPrice.ToString("N0") ₺</h6>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <h6 class="text-muted font-weight-medium">KDV Oranı:</h6>
+                <h6 class="font-weight-medium text-dark">%@ViewBag.Kdv</h6>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <h6 class="text-muted">KDV Dahil Toplam:</h6>
+                <h6>@ViewBag.TotalPriceWithKdv.ToString("N0") ₺</h6>
+            </div>
+        </div>
+
+        <div class="pt-2">
+            @if (ViewBag.Rate > 0)
+            {
+                <div class="d-flex justify-content-between mt-2 p-2 bg-white rounded border-dashed" style="border: 1px dashed #dc3545;">
+                    <h6 class="mb-0 text-danger">Kupon İndirimi (@ViewBag.CouponCode)</h6>
+                    <h6 class="mb-0 text-danger font-weight-bold">-%@ViewBag.Rate</h6>
+                </div>
+            }
+
+            <div class="d-flex justify-content-between mt-4 align-items-center">
+                <h5 class="font-weight-bold">Genel Toplam</h5>
+                <div class="text-right">
+                    <h4 class="font-weight-black mb-0" style="color: #28a745; font-size: 28px;">
+                        @ViewBag.LastPriceAfterDiscount.ToString("N0") ₺
+                    </h4>
+                    <small class="text-muted">KDV ve İndirimler Dahil</small>
+                </div>
+            </div>
+
+            <a href="/Order/Index?LastPriceAfterDiscount=@ViewBag.LastPriceAfterDiscount.ToString(System.Globalization.CultureInfo.InvariantCulture)" class="btn btn-block btn-primary font-weight-bold mt-4 py-3 shadow" style="border-radius: 5px; font-size: 18px; text-transform: uppercase;">
+                <i class="fa fa-credit-card mr-2"></i> Ödemeye Geç
+            </a>
+        </div>
+    </div>
+</div>

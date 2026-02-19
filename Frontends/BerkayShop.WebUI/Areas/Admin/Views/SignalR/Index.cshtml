@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+ }
+<div class="container">
+<div class="col-md-8 offset-2">
+    <div class="alert alert-primary">
+        Bağlantının Durumu:
+        <strong id="connstatus"></strong>
+    </div>
+   <div class="alert alert-info">
+        Mesaj Sayısı:
+        <strong id="connnCommentCount"></strong>
+    </div>
+    <div class="alert alert-warning">
+        Mesaj Sayısı:
+        <strong id="connMessageCount"></strong>
+    </div>
+</div>
+</div>
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:7212/SignalRHub")
+                .build();
+
+            $("#connstatus").text(connection.state);
+
+            connection.start()
+                .then(function() {
+                    console.log("SignalR baglandi");
+                    $("#connstatus").text(connection.state);
+                    
+                    var receiverId = "88b59111-d46a-44ca-bd07-e31acc8fc976";
+                    return connection.invoke("SendStatistics", receiverId);
+                })
+                .catch(function(err) {
+                    console.error("Hata:", err);
+                });
+
+            connection.on("ReceiverTotalCommentCount", (commentCount) => {
+                console.log("Yorum sayisi geldi:", commentCount);
+                $("#connnCommentCount").text(commentCount);
+            });
+
+            connection.on("ReceiverTotalMessageCount", (messagecount) => {
+                console.log("Mesaj sayisi geldi:", messagecount);
+                $("#connMessageCount").text(messagecount);
+            });
+        });
+    </script>
+

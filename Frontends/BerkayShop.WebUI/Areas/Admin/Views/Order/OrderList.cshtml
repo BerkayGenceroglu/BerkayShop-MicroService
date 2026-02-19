@@ -1,0 +1,185 @@
+﻿@model List<GetAllOrderDto>
+@{
+    ViewData["Title"] = "Sipariş Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfd;
+        overflow-x: hidden;
+    }
+
+    .main-container {
+        padding: 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Yeni İstatistik Kartı Tasarımı */
+    .summary-card {
+        background: #3A9AFF;
+        border-radius: 20px;
+        padding: 30px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.15);
+        border: none;
+    }
+
+    .summary-left h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.5px;
+    }
+
+    .summary-left p {
+        opacity: 0.8;
+        margin: 5px 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    .summary-right {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 15px 25px;
+        border-radius: 16px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+        .summary-right .label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .summary-right .value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+    /* Tablo Tasarımı (Değişmedi) */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .modern-table th {
+            background-color: #f9fafb;
+            padding: 14px 20px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #667085;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .modern-table td {
+            padding: 16px 20px;
+            vertical-align: middle;
+            text-align: center;
+            color: #475467;
+            font-size: 14px;
+            border-bottom: 1px solid #f2f4f7;
+        }
+
+    .order-id {
+        font-weight: 600;
+        color: #101828;
+    }
+
+    .user-info-box {
+        display: inline-block;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 6px 12px;
+        border-radius: 8px;
+        color: #334155;
+        font-weight: 500;
+        white-space: normal;
+        word-break: break-all;
+        max-width: 100%;
+    }
+
+    .price-tag {
+        font-weight: 700;
+        color: #039855;
+        background: #ecfdf3;
+        padding: 6px 14px;
+        border-radius: 10px;
+    }
+
+    .date-text {
+        color: #667085;
+        font-weight: 500;
+    }
+</style>
+
+<div class="main-container">
+    <div class="summary-card">
+        <div class="summary-left">
+            <h2>Sipariş Yönetim Paneli</h2>
+            <p>Sistemdeki tüm sipariş süreçlerini ve müşteri verilerini buradan kontrol edin.</p>
+        </div>
+        <div class="summary-right">
+            <span class="label">Toplam Kayıt</span>
+            <span class="value">@Model.Count()</span>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%">Sipariş No</th>
+                    <th style="width: 30%">Müşteri Bilgisi</th>
+                    <th style="width: 25%">Toplam Tutar</th>
+                    <th style="width: 30%">İşlem Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><span class="order-id">#@item.orderingId</span></td>
+                        <td>
+                            <div class="user-info-box">
+                                ID: @item.userId
+                            </div>
+                        </td>
+                        <td>
+                            <span class="price-tag">@item.totalPrice.ToString("N2") ₺</span>
+                        </td>
+                        <td>
+                            <span class="date-text">
+                                <i class="fa fa-clock-o me-1"></i> @item.orderDate.ToString("dd.MM.yyyy HH:mm")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

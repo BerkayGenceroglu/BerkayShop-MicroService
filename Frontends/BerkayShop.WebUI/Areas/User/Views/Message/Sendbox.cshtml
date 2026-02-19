@@ -1,0 +1,107 @@
+﻿@model List<ResultSendBoxMessageDto>
+
+@{
+    ViewData["Title"] = "Sendbox";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="card-title mb-0">
+                                Giden Mesaj Listesi
+                            </h4>
+                        </div>
+
+                        @if (Model != null && Model.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Alıcı</th>
+                                            <th class="text-center">Konu</th>
+                                            <th class="text-center">Tarih</th>
+                                            <th class="text-center">Durum</th>
+                                            <th class="text-center">Sil</th>
+                                            <th class="text-center">Detay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr class="mb-5 py-3">
+                                                <td class="font-weight-bold text-center" style="font-size:15px">@count</td>
+                                                <td class="font-weight-bold text-center" style="font-size:17px">@item.ReceiverId</td>
+                                                <td class="font-weight-bold text-center" style="font-size:17px">@item.Subject</td>
+                                                <td class="font-weight-bold text-center" style="font-size:17px">@item.MessageDate.ToShortDateString()</td>
+                                                @if (item.IsRead)
+                                                {
+                                                    <td class="font-weight-bold text-center" style="font-size:17px"><a href="#" class="btn btn-success">@item.IsRead</a></td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="font-weight-bold text-center" style="font-size:17px"><a href="#" class="btn btn-danger">@item.IsRead</a></td>
+                                                }
+                                                <td class="font-weight-bold text-center" style="font-size:17px"><a href="#" class="btn btn-warning">Sil</a></td>
+                                                <td class="font-weight-bold text-center" style="font-size:17px">@item.MessageDetail</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center py-5">
+                                <i class="mdi mdi-cart-off" style="font-size: 4rem; color: #ccc;"></i>
+                                <p class="text-muted mt-3">Henüz Mesajınız bulunmamaktadır.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table thead th {
+        border-bottom: 2px solid #dee2e6;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+    .badge {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+</style>

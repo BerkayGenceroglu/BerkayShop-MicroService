@@ -1,0 +1,31 @@
+﻿@model WeatherModel
+@{
+    Layout = null;
+   
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hava Durumu</title>
+</head>
+<body>
+    <h2>Lütfen Bir Şehir Yazınız</h2>
+
+    <form method="post">
+        <input type="text" name="city" placeholder="Şehir adı..." required />
+        <button type="submit">Sorgula</button>
+    </form>
+
+    @if (Model != null)
+    {
+        var temp = Model.data.temp;
+        var city = Model.data.city;
+        <div>
+            <p>Girilen Şehir = @city</p>
+            <p>Sıcaklık = @temp</p>
+        </div>
+    }
+
+</body>
+</html>

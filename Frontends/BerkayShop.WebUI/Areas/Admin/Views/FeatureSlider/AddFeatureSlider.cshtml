@@ -1,0 +1,30 @@
+﻿@model CreateFeatureSliderDto
+@{
+    ViewData["Title"] = "AddFeatureSlider";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+
+<section class="content container-fluid">
+    <div style="display:flex; justify-content:center;">
+        <div style="width:600px;">
+            <div class="chart-box">
+                <h4 class="text-center">Öne Çıkan Slider Ekleme Formu</h4>
+                <p>Öne Çıkan Slider ile ilgili işlemlerinizi aşağıdaki Panel üzerinden gerçekleştirebilirsiniz.</p>
+                <br />
+                <form method="post">
+                    <label class="form-label" style="font-weight: 500;">Slider Görsel Title</label>
+                    <input type="text" class="form-control" asp-for="Title" />
+                    <br
+                    <label class="form-label" style="font-weight: 500;">Slider Görsel Image</label>
+                    <input type="text" class="form-control" asp-for="ImageUrl" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Slider Görsel Açıklama</label>
+                    <textarea type="text" class="form-control" asp-for="Description" rows="3"></textarea>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Öne Çıkan Slider Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

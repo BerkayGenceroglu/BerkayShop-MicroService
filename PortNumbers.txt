@@ -1,0 +1,12 @@
+Ocelot   ==> 5000
+Identity ==> 5001
+Catalog  ==> 7100
+Discount ==> 7101
+Order    ==> 7102
+Cargo    ==> 7103
+Basket   ==> 7104
+Images   ==> 7105
+Payment  ==> 7106
+Comment  ==> 7107
+Message  ==> 7108
+UI       ==> 7144

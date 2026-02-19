@@ -1,0 +1,51 @@
+﻿
+@{
+     Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+
+
+@section SignalRScript{
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+}
+
+
+<div class="container">
+    <div class="row">
+        <script type="text/javascript">
+            $(document).ready(() => {
+                // 1️⃣ SignalR hub'a bağlantı oluştur
+                var connection = new signalR.HubConnectionBuilder()
+                    .withUrl("https://localhost:7212/SignalRHub")
+                    .build();
+            
+                // 2️⃣ Bağlantı durumunu ekrana yaz
+                $("#connstatus").text(connection.state);
+            
+                // 3️⃣ Bağlantıyı başlat
+                connection.start().then(() => {
+                    // ✅ Bağlantı başarılı
+                    $("#connstatus").text(connection.state);
+                    connection.invoke("SendStatistics");
+                }).catch((err) => { 
+                    // ❌ Bağlantı hatası
+                    console.log(err) 
+                });
+                connection.on("ReceiverTotalCommentCount",(commentCount) => {
+                    $("#connCommentCount").text(commentCount);
+                 })
+            });
+        </script>
+    </div>
+</div>
+
+
+<div class="col-md-8 offset-2">
+    <div class="alert alert-primary">
+        Bağlantının Durumu:
+        <strong id="connstatus"></strong>
+    </div>
+     <div class="alert alert-warning">
+        Yorum Sayısı:
+        <strong id="connCommentCount"></strong>
+    </div>
+</div>

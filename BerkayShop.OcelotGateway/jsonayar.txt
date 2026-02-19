@@ -1,0 +1,60 @@
+﻿"UpstreamPathTemplate": "/services/catalog/{everything}"
+// Client’ın gateway’e çağırdığı URL
+
+"UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+// Bu route’un kabul ettiği HTTP metodları
+
+"UpstreamScheme": "http"
+// Client → Gateway arası protokol
+
+"AuthenticationOptions": {
+  "AllowedScopes": [ "CatalogFullPermission" ],
+  // Token içinde bu yetki (scope) olmalı
+
+  "AuthenticationProviderKey": "OcelotAuthenticationScheme"
+  // Kullanılacak authentication (JWT) şeması
+},
+
+"DownstreamPathTemplate": "/api/{everything}"
+// Gateway’in isteği gerçek servise ilettiği yol
+
+"DownstreamScheme": "http"
+// Gateway → Servis arası protokol
+
+"DownstreamHostAndPorts": [
+  {
+    "Host": "localhost",
+    // Servisin çalıştığı adres
+
+    "Port": 7100
+    // Servisin çalıştığı port
+  }
+],
+
+"GlobalConfiguration": {
+  "BaseUrl": "http://localhost:5000"
+  // Ocelot Gateway’in kendi adresi
+}
+-----------------------------
+
+
+1️ Client istek atar
+GET http://localhost:5000/services/catalog/products
+Authorization: Bearer <JWT>
+
+
+2️ Ocelot isteği yakalar
+URL → UpstreamPathTemplate ile eşleşir
+Method → GET uygun mu bakar
+
+3️ Kimlik doğrulama yapılır
+OcelotAuthenticationScheme çalışır
+Token geçerli mi?
+CatalogFullPermission scope’u var mı?
+
+4️ İstek yönlendirilir
+GET http://localhost:7100/api/products
+
+5️ Catalog API cevabı döner
+
+6️ Ocelot cevabı client’a iletir

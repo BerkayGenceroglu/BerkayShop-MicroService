@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "BasketPage";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+
+<!-- Breadcrumb End -->
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+
+        @await Component.InvokeAsync("_BasketShoppingCartComponentPartial")
+        
+        @await Component.InvokeAsync("_CouponAndSummaryShoppingCartComponentPartial")
+
+    </div>
+</div>
+<!-- Cart End -->

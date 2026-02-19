@@ -1,0 +1,4 @@
+﻿Toplam Sipariş Ücreti;
+Son Sipariş Tarihi;
+Bugün Yapılan Sipariş Toplamı;
+Son Eklenen Ürün;

@@ -1,0 +1,45 @@
+﻿@model UpdateCommentDto
+
+@{
+    ViewData["Title"] = "UpdateComment";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+}
+<section class="content container-fluid">
+    <div style="display:flex; justify-content:center;">
+        <div style="width:600px;">
+            <div class="chart-box">
+                <h4 class="text-center">Yorum Güncelleme Formu</h4>
+                <p>Yorum ile ilgili işlemlerinizi aşağıdaki Panel üzerinden gerçekleştirebilirsiniz.</p>
+                <br />
+                <form method="post">
+                    <input type="hidden" asp-for="UserCommentId" />
+                    <input type="hidden" asp-for="CreatedDate"/>
+                    <label class="form-label" style="font-weight: 500;">Kullanıcı</label>
+                    <input type="text" readonly  class="form-control" asp-for="NameSurname" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">productId</label>
+                    <input type="text"  class="form-control" asp-for="ProductId" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Email</label>
+                    <input type="text" readonly class="form-control" asp-for="Email" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Görsel</label>
+                    <input type="text" readonly class="form-control" asp-for="ImageUrl" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Rating</label>
+                    <input type="text"  class="form-control" asp-for="Rating" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Status</label>
+                    <input type="text" class="form-control" asp-for="Status" />
+                    <br />
+                    <label class="form-label" style="font-weight: 500;">Yorum</label>
+                    <textarea type="text" class="form-control" asp-for="CommentDetail" rows="3"></textarea>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Yorum Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+

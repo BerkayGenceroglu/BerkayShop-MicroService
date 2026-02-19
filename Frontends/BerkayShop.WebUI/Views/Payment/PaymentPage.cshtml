@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentPage";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+<div class="payment-section">
+    <style>
+        .payment-section {
+            display: flex;
+            gap: 40px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-preview-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-form-container {
+            flex: 1;
+        }
+
+        .card-3d {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .credit-card {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .credit-card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .card-face-front, .card-face-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding: 30px;
+            backface-visibility: hidden;
+            border-radius: 20px;
+        }
+
+        .card-face-back {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            transform: rotateY(180deg);
+        }
+
+        .chip-img {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .card-num-display {
+            font-size: 22px;
+            color: white;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-info-row {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-size: 10px;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .magnetic-bar {
+            width: 100%;
+            height: 50px;
+            background: #000;
+            margin-top: 20px;
+        }
+
+        .cvv-box {
+            background: white;
+            padding: 12px;
+            text-align: right;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .cvv-text {
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+
+        .payment-form-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @@media (max-width: 768px) {
+            .payment-section {
+                flex-direction: column;
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <div class="card-preview-container">
+        <div class="card-3d">
+            <div class="credit-card" id="card">
+                <div class="card-face-front">
+                    <div class="chip-img"></div>
+                    <div class="card-num-display" id="numDisplay">#### #### #### ####</div>
+                    <div class="card-info-row">
+                        <div class="info-block">
+                            <span class="info-label">Kart Sahibi</span>
+                            <span class="info-value" id="nameDisplay">AD SOYAD</span>
+                        </div>
+                        <div class="info-block">
+                            <span class="info-label">Son Kullanma</span>
+                            <span class="info-value" id="dateDisplay">AA/YY</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-face-back">
+                    <div class="magnetic-bar"></div>
+                    <div class="cvv-box">
+                        <div class="cvv-text" id="cvvDisplayBack">***</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment-form-container">
+        <div class="payment-form-box">
+            <form id="cardForm">
+                <div class="input-group">
+                    <label>Kart Numarası</label>
+                    <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div class="input-group">
+                    <label>Kart Sahibi</label>
+                    <input type="text" id="cardName" placeholder="Ad Soyad">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Son Kullanma</label>
+                        <input type="text" id="cardDate" placeholder="AA/YY" maxlength="5">
+                    </div>
+                    <div class="input-group">
+                        <label>CVV</label>
+                        <input type="text" id="cardCvv" placeholder="123" maxlength="3">
+                    </div>
+                </div>
+                <button type="submit" class="pay-button">Ödemeyi Tamamla</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const cardNum = document.getElementById('cardNum');
+        const cardName = document.getElementById('cardName');
+        const cardDate = document.getElementById('cardDate');
+        const cardCvv = document.getElementById('cardCvv');
+        const card = document.getElementById('card');
+
+        cardNum.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\s/g, '');
+            let formatted = val.match(/.{1,4}/g)?.join(' ') || '';
+            e.target.value = formatted;
+            document.getElementById('numDisplay').textContent = formatted || '#### #### #### ####';
+        });
+
+        cardName.addEventListener('input', (e) => {
+            document.getElementById('nameDisplay').textContent = e.target.value.toUpperCase() || 'AD SOYAD';
+        });
+
+        cardDate.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length >= 2) {
+                val = val.slice(0, 2) + '/' + val.slice(2, 4);
+            }
+            e.target.value = val;
+            document.getElementById('dateDisplay').textContent = val || 'AA/YY';
+        });
+
+        cardCvv.addEventListener('focus', () => {
+            card.classList.add('flip');
+        });
+
+        cardCvv.addEventListener('blur', () => {
+            card.classList.remove('flip');
+        });
+
+        cardCvv.addEventListener('input', (e) => {
+            const val = e.target.value.replace(/\D/g, '');
+            e.target.value = val;
+            document.getElementById('cvvDisplayBack').textContent = val || '***';
+        });
+
+        document.getElementById('cardForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Ödeme işlemi başarılı!');
+        });
+    </script>
+</div>

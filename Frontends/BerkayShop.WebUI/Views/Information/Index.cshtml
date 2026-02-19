@@ -1,0 +1,11 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@* View’a çeviri yapabilen bir servis bağladım. *@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<h1>
+    @localizer["Merhaba"] @localizer["Bugün"] @localizer["Hava"] @localizer["Çok"] @localizer["Sıcak"] 
+</h1>
+

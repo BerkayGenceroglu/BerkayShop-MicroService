@@ -1,0 +1,226 @@
+﻿@model List<ResultFeatureSliderDto>
+@{
+    ViewData["Title"] = "Öne Çıkan Slider Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Sayfa genelinde scrollbar oluşmasını engeller */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfd;
+        overflow-x: hidden;
+    }
+
+    .main-container {
+        padding: 25px;
+        width: 100%;
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .header-section h2 {
+            font-weight: 700;
+            color: #101828;
+            margin: 0;
+        }
+
+    /* Tablo Kapsayıcısı: Scrollbar'ı tamamen gizler ve taşmayı önler */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 12px;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        width: 100%;
+        overflow: hidden; /* Taşma olursa gizle */
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Sütun genişliklerini sabitler, taşmayı önler */
+    }
+
+        .modern-table th {
+            background-color: #f9fafb;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #667085;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .modern-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            color: #475467;
+            font-size: 13px;
+            border-bottom: 1px solid #f2f4f7;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    /* Metinlerin Tabloyu İtmesini Engelleme */
+    .slider-title {
+        font-weight: 600;
+        color: #101828;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .slider-desc {
+        color: #667085;
+        font-size: 10px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0.8;
+    }
+
+    /* Durum Etiketleri */
+    .status-badge {
+        padding: 4px 10px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .status-true {
+        background: #ecfdf3;
+        color: #039855;
+    }
+
+    .status-false {
+        background: #fef3f2;
+        color: #b42318;
+    }
+
+    /* Aksiyon Butonları */
+    .btn-action {
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: 0.2s;
+        border: none;
+    }
+
+    .btn-status-on {
+        background: #f0f9ff;
+        color: #026aa2;
+    }
+
+    .btn-status-off {
+        background: #f8fafc;
+        color: #475569;
+    }
+
+    .btn-edit {
+        background: #eff4ff;
+        color: #444ce7;
+    }
+
+    .btn-delete {
+        background: #fef3f2;
+        color: #b42318;
+    }
+
+    .btn-add-new {
+        background: #7f56d9;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+    }
+
+    .index-badge {
+        color: #98a2b3;
+        font-weight: 500;
+        font-size: 12px;
+    }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Slider Yönetimi</h2>
+        </div>
+        <a href="/Admin/FeatureSlider/AddFeatureSlider" class="btn btn-add-new">
+            <i class="fa fa-plus"></i> Slider Ekle
+        </a>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th style="width: 5%">No</th>
+                    <th style="width: 65%">Slider Bilgisi</th>
+                    <th style="width: 10%">Durum</th>
+                    <th style="width: 20%">Görünürlük Ayarı</th>
+                    <th style="width: 15%; text-align: right;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td class="index-badge">#@count.ToString("D2")</td>
+                        <td>
+                            <span class="slider-title" title="@item.Title">@item.Title</span>
+                            <span class="slider-desc" title="@item.Description">@item.Description</span>
+                        </td>
+                        <td>
+                            @if (item.Status)
+                            {
+                                <span class="status-badge status-true">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge status-false">Pasif</span>
+                            }
+                        </td>
+                        <td>
+                            <div style="display: flex; gap: 4px;">
+                                <a href="/Admin/FeatureSlider/FeatureSliderStatusChangeToTrue/@item.FeatureSliderId" class="btn-action btn-status-on">
+                                    <i class="fa fa-check-circle"></i> Aktif Yap
+                                </a>
+                                <a href="/Admin/FeatureSlider/FeatureSliderStatusChangeToFalse/@item.FeatureSliderId" class="btn-action btn-status-off">
+                                    <i class="fa fa-times-circle"></i> Pasif Yap
+                                </a>
+                            </div>
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                <a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderId" class="btn-action btn-edit">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="/Admin/FeatureSlider/RemoveFeatureSlider/@item.FeatureSliderId" class="btn-action btn-delete" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                    <i class="fa fa-trash-can"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

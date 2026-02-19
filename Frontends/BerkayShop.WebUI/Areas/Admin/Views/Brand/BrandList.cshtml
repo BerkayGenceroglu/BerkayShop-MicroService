@@ -1,0 +1,199 @@
+﻿@model List<ResultBrandDto>
+@{
+    ViewData["Title"] = "Marka Listesi";
+    Layout = "~/Areas/Admin/Views/AdminUILayout/UILayout.cshtml";
+    int count = 0;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Scrollbar oluşumunu ve yatay taşmayı engeller */
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfd;
+        overflow-x: hidden;
+    }
+
+    .main-container {
+        padding: 30px;
+        width: 100%;
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+        .header-section h2 {
+            font-weight: 700;
+            color: #101828;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+    /* Modern Tablo Kartı */
+    .table-wrapper {
+        background: #ffffff;
+        border: 1px solid #eaecf0;
+        border-radius: 12px;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+        .modern-table th {
+            background-color: #f9fafb;
+            padding: 12px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #667085;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .modern-table td {
+            padding: 14px 20px;
+            vertical-align: middle;
+            color: #475467;
+            font-size: 14px;
+            border-bottom: 1px solid #f2f4f7;
+        }
+
+    /* Marka Logosu Stili */
+    .brand-logo-container {
+        width: 80px;
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid #f2f4f7;
+        overflow: hidden;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Logoların bozulmaması için contain idealdir */
+        padding: 4px;
+    }
+
+    .brand-name {
+        font-weight: 600;
+        color: #101828;
+    }
+
+    /* Aksiyon Butonları */
+    .btn-action {
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.2s;
+        border: none;
+    }
+
+    .btn-edit {
+        background: #eff4ff;
+        color: #444ce7;
+    }
+
+        .btn-edit:hover {
+            background: #d1e0ff;
+        }
+
+    .btn-delete {
+        background: #fef3f2;
+        color: #b42318;
+    }
+
+        .btn-delete:hover {
+            background: #fee4e2;
+        }
+
+    .btn-add-new {
+        background: #7f56d9;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+    }
+
+        .btn-add-new:hover {
+            background: #6941c6;
+            color: white;
+        }
+
+    .index-badge {
+        color: #98a2b3;
+        font-weight: 500;
+    }
+</style>
+
+<div class="main-container">
+    <div class="header-section">
+        <div>
+            <h2>Marka Yönetimi</h2>
+            <p style="color: #667085; margin: 5px 0 0 0;">Sistemdeki iş ortağı markaları ve logolarını buradan yönetin.</p>
+        </div>
+        <a href="/Admin/Brand/AddBrand" class="btn btn-add-new">
+            <i class="fa fa-plus"></i> Yeni Marka Ekle
+        </a>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%">#</th>
+                    <th style="width: 25%">Marka Görsel</th>
+                    <th style="width: 40%">Marka Adı</th>
+                    <th style="width: 25%; text-align: center;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td class="index-badge">#@count.ToString("D2")</td>
+                        <td>
+                            <div class="brand-logo-container">
+                                <img src="@item.ImageUrl" class="brand-logo" alt="@item.BrandName" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="brand-name">@item.BrandName</span>
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="display: flex; justify-content: center; gap: 8px;">
+                                <a href="/Admin/Brand/UpdateBrand/@item.BrandId" class="btn-action btn-edit">
+                                    <i class="fa fa-pencil"></i> Düzenle
+                                </a>
+                                <a href="/Admin/Brand/RemoveBrand/@item.BrandId" class="btn-action btn-delete" onclick="return confirm('Bu markayı silmek istediğinize emin misiniz?')">
+                                    <i class="fa fa-trash-can"></i> Sil
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

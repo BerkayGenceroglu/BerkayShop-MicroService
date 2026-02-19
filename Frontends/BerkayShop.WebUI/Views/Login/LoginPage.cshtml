@@ -1,0 +1,99 @@
+﻿@model LoginBerkayShopDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BerkayShop Giriş Yapma Sayfası</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="~/colorlib-regform-30/css/opensans-font.css">
+	<link rel="stylesheet" type="text/css" href="~/colorlib-regform-30/fonts/line-awesome/css/line-awesome.min.css">
+	<!-- Jquery -->
+	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+	<!-- Main Style Css -->
+	<link rel="stylesheet" href="~/colorlib-regform-30/css/style.css" />
+
+	<style>
+		.container {
+			display: flex;
+			align-items: flex-start; /* 🔥 kritik nokta */
+			position: relative;
+			padding-left: 35px;
+		}
+
+			.container input[type="checkbox"] {
+				position: absolute;
+				left: 0;
+				opacity: 0;
+			}
+
+		.checkmark {
+			position: absolute;
+			left: 0;
+			top: 3px; /* checkbox üst hizası */
+			height: 14px;
+			width: 14px;
+			border: 2px solid #ccc;
+		}
+
+		.text-content {
+			margin-left: 8px;
+			display: flex;
+			flex-direction: column; /* 🔥 satırları alt alta */
+			line-height: 1.4;
+		}
+
+		.text {
+			margin-top: 2px;
+		}
+	</style>
+</head>
+<body class="form-v4">
+	<div class="page-content">
+		<div class="form-v4-content">
+			<div class="form-left">
+				<h2>BerkayShop’a hoş geldiniz!</h2>
+				<p class="text-1">BerkayShop hesabınıza giriş yaparak siparişlerinizi kolayca takip edebilir, favori ürünlerinize hızlıca ulaşabilir ve alışveriş deneyiminizi kesintisiz şekilde sürdürebilirsiniz.</p>
+				<p class="text-2">Güvenli altyapımız sayesinde kişisel bilgileriniz korunur. Hızlı giriş özelliği ile alışverişinize kaldığınız yerden devam edebilir, size özel fırsatları kaçırmadan keyifli bir alışveriş deneyimi yaşayabilirsiniz.</p>
+				<p class="text-2">Hesabınız yoksa Kayıt Ol butonuna tıklayarak kayıt olabilirsiniz.</p>
+				<br />
+				<a href="/Register/RegisterPage"
+				   style="
+							   display: inline-block;
+							   background-color: #ffffff;
+							   color: #000000;
+							   padding: 12px 28px;
+							   border-radius: 6px;
+							   font-weight: 600;
+							   text-decoration: none;
+							   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+						   ">
+					Kayıt Ol
+				</a>
+			</div>
+			<form class="form-detail" action="#" method="post">
+				<h2>Giriş Yap</h2>
+				<div class="form-row">
+					<label for="your_username">Kullanıcı Adınız</label>
+					<input type="text" asp-for="UserName" id="your_username" class="input-text">
+				</div>
+				<div class="form-row">
+					<label for="your_password">Şifreniz</label>
+					<input type="password" asp-for="Password" id="your_password" class="input-text">
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Üye ol">
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
