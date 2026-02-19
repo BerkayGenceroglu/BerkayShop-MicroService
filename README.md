@@ -19,7 +19,7 @@
 
 ## 🧾 Proje Tanıtımı
 
-**BerkayShop**, BerkayShop, modern yazılım mimarileri kullanılarak geliştirilmiş, ölçeklenebilir ve modüler bir e-ticaret platformu altyapısıdır. Proje, mikroservisler arası iletişim, merkezi kimlik doğrulama ve API yönetimi gibi karmaşık süreçleri yönetmek üzere tasarlanmıştır.
+**BerkayShop**, modern yazılım mimarileri kullanılarak geliştirilmiş, ölçeklenebilir ve modüler bir e-ticaret platformu altyapısıdır. Proje, mikroservisler arası iletişim, merkezi kimlik doğrulama ve API yönetimi gibi karmaşık süreçleri yönetmek üzere tasarlanmıştır.
 
 Bu proje sayesinde:
 
