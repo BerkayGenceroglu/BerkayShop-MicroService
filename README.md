@@ -333,17 +333,8 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 **URL:** `/Admin/Dashboard/Index`
 
-**Açıklama:** Admin panelinin kontrol merkezidir. Tüm servislerdeki anlık verileri bir arada gösterir.
-
-**İstatistikler:**
-- 🚗 Toplam Ürün Sayısı
-- 📦 Toplam Sipariş Sayısı
-- 👤 Toplam Kullanıcı Sayısı
-- 💰 Toplam Satış Tutarı
-- 🏷️ Toplam Kategori Sayısı
-- 💸 Aktif Kupon Sayısı
-
-<!-- Ekran görüntüsü: Admin Dashboard 2 -->
+**Açıklama:**  Admin Paneli içinde entegre edilmiş Rapid API bileşenidir. Dış kaynaklı verilerle admin panelini zenginleştirir. API sorguları anlık olarak çalışır ve sonuçlar ekranda listelenir.
+<!-- Ekran görüntüsü: Admin Rapid Api  -->
 <img width="1918" height="943" alt="image" src="https://github.com/user-attachments/assets/a5b82da2-cbe0-4f61-9c7a-d9a21332fdee" />
 <img width="1917" height="953" alt="image" src="https://github.com/user-attachments/assets/7c1deeba-1d45-4495-8103-7e54b9b910a3" />
 <img width="1920" height="949" alt="image" src="https://github.com/user-attachments/assets/b45d6d9a-b94d-4a7e-923d-ebac2a2682c0" />
@@ -355,7 +346,7 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 ### 18. Ürün Yönetimi (Admin — Catalog)
 
-**URL:** `/Admin/Catalog/Index`
+**URL:** `Admin/Product/ProductListWithCategory`
 
 **Açıklama:** Tüm ürünlerin listelendiği, eklendiği, düzenlendiği ve silindiği yönetim sayfasıdır. Catalog Service API'si üzerinden işlemler gerçekleştirilir.
 
@@ -370,33 +361,15 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 <!-- Ekran görüntüsü: Admin Ürün Listesi -->
 <img width="1920" height="956" alt="image" src="https://github.com/user-attachments/assets/73c415c9-8377-4604-9436-cfce0f719a05" />
 <img width="1920" height="952" alt="image" src="https://github.com/user-attachments/assets/79166ea5-0943-435e-b261-473c201dba65" />
-
 <img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/390d9866-1644-4730-8aae-1b20339763ca" />
-
-**Ürün Ekleme Formu:**
-
-**Form Alanları:**
-- Ürün adı
-- Açıklama
-- Fiyat
-- Görsel URL
-- Kategori seçimi
-
-<!-- Ekran görüntüsü: Admin Ürün Ekleme -->
-![Admin Ürün Ekleme](ekran-goruntuleri/admin-urun-ekle.png)
 <img width="1916" height="955" alt="image" src="https://github.com/user-attachments/assets/f6843fba-8dc5-4ca4-b36a-59be144567cc" />
-
-**Ürün Güncelleme:**
-
-<!-- Ekran görüntüsü: Admin Ürün Güncelleme -->
 <img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/dfd215c2-f4d6-4022-a40f-78242bbb15ee" />
-
 
 ---
 
 ### 19. Kategori Yönetimi (Admin — Category)
 
-**URL:** `/Admin/Category/Index`
+**URL:** `Admin/Category/CategoryList`
 
 **Açıklama:** Ürün kategorilerini yönetme sayfasıdır. Catalog Service'e bağlıdır.
 
@@ -405,23 +378,15 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 - Yeni kategori ekleme
 - Kategori düzenleme ve silme
 
-**Form Alanları:**
-- Kategori adı
-
-<!-- Ekran görüntüsü: Admin Kategori Listesi -->
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/f5863dfc-aff6-4f80-b3e1-ecc7748e0eb3" />
-
-
-<!-- Ekran görüntüsü: Admin Kategori Ekleme -->
 <img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/1fa0f631-3972-4049-94cd-d7123cfeb0d7" />
-
 <img width="1920" height="920" alt="image" src="https://github.com/user-attachments/assets/3846b24a-e247-4c6b-8ccc-0576532c936a" />
 
 ---
 
 ### 20. Sipariş Yönetimi (Admin — Orders)
 
-**URL:** `/Admin/Order/Index`
+**URL:** `/Admin/Order/OrderList`
 
 **Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
 
@@ -446,9 +411,9 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 ---
 ### 25. Comment Yönetimi (Admin — Comment)
 
-**URL:** `/Admin/Comment/Index`
+**URL:** `Admin/Comment/CommentList`
 
-**Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
+**Açıklama:** Tüm kullanıcılara ait Yorumların listelendiği ve yönetildiği sayfadır. Comment Service API'si üzerinden veriler çekilir.
 
 **Tablo Kolonları:**
 - Sipariş ID
@@ -471,24 +436,14 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 ### 26. Slider Yönetimi (Admin — Slider)
 
-**URL:** `/Admin/Slider/Index`
+**URL:** `Admin/FeatureSlider/FeatureSliderList`
 
-**Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
-
-**Tablo Kolonları:**
-- Sipariş ID
-- Kullanıcı Adı
-- Ad Soyad
-- E-posta
-- Toplam Tutar
-- Adres
-- Tarih
-- İşlemler
+**Açıklama:** Siteye ait Sliderların listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- 👁️ Sipariş detayı görüntüleme
-- ✏️ Sipariş güncelleme
-- 🗑️ Sipariş silme
+- 👁️ Sliderlar detayı görüntüleme
+- ✏️ Sliderlar güncelleme
+- 🗑️ Sliderlar silme
 
 <!-- Ekran görüntüsü: Admin Sipariş Listesi -->
 <img width="1920" height="915" alt="image" src="https://github.com/user-attachments/assets/8697e66c-1d29-4505-9fe2-49190514182d" />
@@ -499,24 +454,14 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 ---
 ### 27. Öne Çıkan Özellikler Yönetimi (Admin — Öne Çıkan Özellikler)
 
-**URL:** `/Admin/Slider/Index`
+**URL:** `Admin/Feature/FeatureList`
 
-**Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
-
-**Tablo Kolonları:**
-- Sipariş ID
-- Kullanıcı Adı
-- Ad Soyad
-- E-posta
-- Toplam Tutar
-- Adres
-- Tarih
-- İşlemler
+**Açıklama:**  Siteye ait Öne Çıkan Özellikler listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- 👁️ Sipariş detayı görüntüleme
-- ✏️ Sipariş güncelleme
-- 🗑️ Sipariş silme
+- 👁️ Öne Çıkan Özellikler detayı görüntüleme
+- ✏️ Öne Çıkan Özellikler güncelleme
+- 🗑️ Öne Çıkan Özellikler silme
 
 <!-- Ekran görüntüsü: Admin Sipariş Listesi -->
 <img width="1915" height="914" alt="image" src="https://github.com/user-attachments/assets/734eaddb-d7b3-4627-88f3-30b2c40e421e" />
@@ -528,24 +473,14 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 ---
 ### 27. Özel Teklif  Yönetimi (Admin — Öne Çıkan Özellikler)
 
-**URL:** `/Admin/Slider/Index`
+**URL:** `/Admin/OfferDiscount/OfferDiscountList`
 
-**Açıklama:** Tüm kullanıcılara ait siparişlerin listelendiği ve yönetildiği sayfadır. Order Service API'si üzerinden veriler çekilir.
-
-**Tablo Kolonları:**
-- Sipariş ID
-- Kullanıcı Adı
-- Ad Soyad
-- E-posta
-- Toplam Tutar
-- Adres
-- Tarih
-- İşlemler
+**Açıklama:** Siteye ait Özel Tekliflerin  listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- 👁️ Sipariş detayı görüntüleme
-- ✏️ Sipariş güncelleme
-- 🗑️ Sipariş silme
+- 👁️ Özel Teklifler detayı görüntüleme
+- ✏️ Özel Teklifler güncelleme
+- 🗑️ Özel Teklifler silme
 
 <!-- Ekran görüntüsü: Admin Sipariş Listesi -->
 <img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/822c70ee-e362-4498-b03d-be4dbeb814c2" />
@@ -553,75 +488,58 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 <img width="1920" height="915" alt="image" src="https://github.com/user-attachments/assets/ff740e6e-9c63-4afb-918a-35a2d945c5bf" />
 
 
-
-
 ---
-### 21. İndirim Teklif Yönetimi (Admin — Discount)
+### 21. Özel İndirim Yönetimi (Admin — Discount)
 
-**URL:** `/Admin/Discount/Index`
+**URL:** `Admin/SpecialOffer/SpecialOfferList`
 
-**Açıklama:** Kupon kodlarının oluşturulduğu, güncellendiği ve silindiği yönetim sayfasıdır. Discount Service API'si üzerinden işlem yapılır.
-
-**Tablo Kolonları:**
-- ID, Ürün Adı, Açıklama, İndirim Tutarı, İşlemler
+**Açıklama:** Siteye ait Özel İndirim  listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- ➕ Yeni kupon oluşturma
-- ✏️ Kupon düzenleme
-- 🗑️ Kupon silme
-
-**Form Alanları:**
-- Ürün adı (hangi ürüne kupon uygulanacak)
-- Açıklama
-- İndirim tutarı (TL)
+- ➕ Özel İndirim oluşturma
+- ✏️ Özel İndirim düzenleme
+- 🗑️ Özel İndirim silme
 
 <!-- Ekran görüntüsü: Admin Kupon Listesi -->
 <img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/ecc4247a-430e-4d9b-8384-031ed980eabb" />
 <img width="1920" height="870" alt="image" src="https://github.com/user-attachments/assets/4e4b2056-9522-4cfe-9e0e-df8183836c5e" />
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/ad8e3efa-a801-4aa3-9118-c259275fd7c6" />
 
-### 21. İndirim Teklif Yönetimi (Admin — Discount)
+### 21. Marka Yönetimi (Admin — Brand)
 
-**URL:** `/Admin/Discount/Index`
+**URL:** `Admin/Brand/BrandList`
 
-**Açıklama:** Kupon kodlarının oluşturulduğu, güncellendiği ve silindiği yönetim sayfasıdır. Discount Service API'si üzerinden işlem yapılır.
+**Açıklama:** Siteye ait Markaların listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
 
-**Tablo Kolonları:**
-- ID, Ürün Adı, Açıklama, İndirim Tutarı, İşlemler
 
 **İşlemler:**
-- ➕ Yeni kupon oluşturma
-- ✏️ Kupon düzenleme
-- 🗑️ Kupon silme
+- ➕ Marka oluşturma
+- ✏️ Marka düzenleme
+- 🗑️ Marka silme
 
-**Form Alanları:**
-- Ürün adı (hangi ürüne kupon uygulanacak)
-- Açıklama
-- İndirim tutarı (TL)
 
 <!-- Ekran görüntüsü: Admin Kupon Listesi -->
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/fa677d2f-e957-41cc-9fee-5eaf0bfcd762" />
+<img width="1919" height="943" alt="image" src="https://github.com/user-attachments/assets/462478c5-7deb-43f2-aa58-f2faeaa7275c" />
+<img width="1919" height="948" alt="image" src="https://github.com/user-attachments/assets/b7df59eb-e928-4ac0-b277-c02edc6899ea" />
+
+
 <img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/acd8453f-8a3f-4601-bf6c-1ba93033fe2e" />
 <img width="1920" height="917" alt="image" src="https://github.com/user-attachments/assets/71ec72be-8347-4a0e-a93d-61d4c01dac48" />
 <img width="1918" height="922" alt="image" src="https://github.com/user-attachments/assets/e09af030-5817-4614-a4ca-b5ec08083cd4" />
 
 ### 21. Kargo Firmaları Yönetimi (Admin — Discount)
 
-**URL:** `/Admin/Discount/Index`
+**URL:** `/Admin/Cargo/CargoCompanyList`
 
-**Açıklama:** Kupon kodlarının oluşturulduğu, güncellendiği ve silindiği yönetim sayfasıdır. Discount Service API'si üzerinden işlem yapılır.
-
-**Tablo Kolonları:**
-- ID, Ürün Adı, Açıklama, İndirim Tutarı, İşlemler
+**Açıklama:** Siteye ait Cargo Firmaların listelendiği ve yönetildiği sayfadır. Cargo Service API'si üzerinden veriler çekilir.
 
 **İşlemler:**
-- ➕ Yeni kupon oluşturma
-- ✏️ Kupon düzenleme
-- 🗑️ Kupon silme
+- ➕ Cargo Firma oluşturma
+- ✏️ Cargo Firma düzenleme
+- 🗑️ Cargo Firma silme
 
-**Form Alanları:**
-- Ürün adı (hangi ürüne kupon uygulanacak)
-- Açıklama
-- İndirim tutarı (TL)
 
 <!-- Ekran görüntüsü: Admin Kupon Listesi -->
 <img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/a55216e5-4357-424b-81b3-a3eaca1be838" />
@@ -631,6 +549,19 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 
 ---
 
+### 21. Hakkımda-Bilgi Yönetimi (Admin — About)
+
+**URL:** `Admin/About/AboutList`
+
+**Açıklama:** Siteye ait Bilgi-Hakkımda kısmının listelendiği ve yönetildiği sayfadır. Catalog Service API'si üzerinden veriler çekilir.
+
+**İşlemler:**
+- ➕ Cargo Firma oluşturma
+- ✏️ Cargo Firma düzenleme
+- 🗑️ Cargo Firma silme
+
+
+---
 ### 22. Kullanıcı Yönetimi (Admin — Users)
 
 **URL:** `/Admin/User/Index`
