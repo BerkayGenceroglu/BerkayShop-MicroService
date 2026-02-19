@@ -620,7 +620,22 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 <img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/21f1cd02-af4a-4986-93c5-b8e22e6dd185" />
 
 ---
+### 23. 404-401 Hata Sayfaları
 
+**URL:** `/Error/NotFoundPage404`
+**URL:** `/Error/NotFoundPage401`
+
+**Açıklama:** Sistem içerisinde kullanıcı deneyimini iyileştirmek ve güvenliği artırmak amacıyla özel hata sayfaları tasarlanmıştır.Bu sayfalar, hem admin panelinde hem de kullanıcı tarafında oluşabilecek yetki ve erişim problemlerini daha anlaşılır bir şekilde yönetir.
+
+**❌ 404 – Not Found (Sayfa Bulunamadı):**
+- Var olmayan veya hatalı URL’ye erişildiğinde görüntülenir.
+  <img width="1913" height="944" alt="image" src="https://github.com/user-attachments/assets/86174155-ac02-4a5e-a72f-34facc8e8ba3" />
+
+**🚫 401 – Unauthorized (Yetkisiz Erişim):**
+- Kullanıcı, yetkisi olmayan bir sayfaya erişmeye çalıştığında görüntülenir.
+<img width="1920" height="953" alt="image" src="https://github.com/user-attachments/assets/2a709195-3025-4594-bd69-1801c378e3c1" />
+
+---
 
 ## 👤 Geliştirici
 
