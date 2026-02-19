@@ -189,6 +189,8 @@ Proje, **Polyglot Persistence** yaklaşımını benimseyerek her servise en uygu
 <!-- Ekran görüntüsü: Ürün Listeleme Filtreli -->
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/674a0e87-23ea-4a22-9993-6f63891288e8" />
 
+<!-- Ekran görüntüsü: Ürün Listeleme Filtreli -->
+<img width="1918" height="957" alt="image" src="https://github.com/user-attachments/assets/2bc9fe41-8f29-47bb-bea5-ab0c45e504f4" />
 
 ---
 
