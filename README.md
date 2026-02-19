@@ -272,7 +272,8 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 ```
 
 <!-- Ekran görüntüsü: Checkout Formu -->
-<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/73414f01-47d7-4ccd-8156-bac25ab89b42" />
+<img width="1920" height="946" alt="image" src="https://github.com/user-attachments/assets/162bc2de-a960-4e70-8345-69869c7926c8" />
+
 
 
 <!-- Ekran görüntüsü: Checkout Ödeme Bilgileri -->
