@@ -341,6 +341,20 @@ Admin paneli, **Area** yapısı ile ayrılmıştır. Yalnızca **Admin** rolüne
 **Erişim:** Identity Server üzerinden Admin rolüyle giriş yapılır.
 
 ---
+### 16. SignalR (Admin SignalR)
+
+**URL:** `/Admin/SignalR/Index`
+
+**Açıklama:** Admin panelinin gerçek zamanlı (real-time) bildirim merkezidir. Sistem üzerinde gerçekleşen önemli olaylar anlık olarak admin ekranına yansıtılır. Bu yapı sayesinde manuel sayfa yenilemeye gerek kalmadan canlı veri akışı sağlanır.
+
+**⚡ Nasıl Çalışır?:**
+- Backend tarafında ilgili işlem gerçekleştiğinde SignalR Hub tetiklenir.
+- Bağlı olan admin client’larına anlık veri push edilir.
+- Sayfa yenilemeye gerek kalmadan UI otomatik olarak güncellenir.
+
+<img width="433" height="149" alt="image" src="https://github.com/user-attachments/assets/5f16b209-6fb3-4f41-b9d7-b4897a4d7eee" />
+<img width="344" height="144" alt="image" src="https://github.com/user-attachments/assets/0d4ebdf1-764f-434a-b060-149ce717005f" />
+
 
 ### 17. Dashboard (Admin Ana Sayfa)
 
