@@ -281,7 +281,7 @@ Toplam fiyat güncellenir
 
 **URL:** `Order/Index?LastPriceAfterDiscount=`
 
-**Açıklama:** Siparişin tamamlandığı son adım. Form doldurulduktan sonra `BasketCheckoutEvent` RabbitMQ'ya yayınlanır ve Order Service siparişi oluşturur.
+**Açıklama:** Siparişin tamamlandığı son adım. Form doldurulduktan sonra `BasketCheckoutEvent` Formaliteden(not real) Order Service siparişi oluşturur.
 
 **Form Alanları:**
 - 👤 Ad, Soyad
@@ -309,6 +309,24 @@ Order Service Event'i tüketir → SQL Server'a sipariş kaydedilir
 <!-- Ekran görüntüsü: Checkout Ödeme Bilgileri -->
 <img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/f912c261-fcdd-47b3-930b-f9ed5f3acf65" />
 <img width="1910" height="914" alt="image" src="https://github.com/user-attachments/assets/f6d7cc6b-4540-46b4-90c3-f5b30a42b8a2" />
+
+
+---
+### 7. Contact
+
+**URL:** `Order/Index?LastPriceAfterDiscount=`
+
+**Açıklama:** Kullanıcıların sistem yöneticileri ile iletişime geçmesini sağlayan sayfadır. Ziyaretçiler bu form üzerinden mesaj göndererek soru, öneri veya geri bildirim iletebilirler.Gönderilen mesajlar backend tarafında ilgili servise iletilir ve admin paneli üzerinden görüntülenebilir.
+
+**Form Alanları:**
+- 👤 İsim – Soyisim
+- 📧 E-posta Adresi
+- 🏷️ Konu
+- 💬 Mesaj İçeriği
+Form başarıyla gönderildiğinde kullanıcıya bilgilendirme mesajı gösterilir.
+
+<!-- Ekran görüntüsü: Contact Formu -->
+<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/e4b1fccc-26ca-4c67-8050-74efc47002cf" />
 
 
 ---
